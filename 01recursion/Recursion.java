@@ -8,12 +8,12 @@ public class Recursion implements hw01{
 	    throw new IllegalArgumentException();
 	}
         else{
-	    return sqrtHelp(n, (n/3 + 3)/2);
+	    return sqrtHelp(n, (n/1 + 1)/2);
 	}
     }
 
     public double sqrtHelper(double n, double guess){
-	if((guess-n)/n <= 0.0000001){
+	if((guess*guess-n)/n <= 0.0000001){
 	    return guess;
 	}
 	else{
