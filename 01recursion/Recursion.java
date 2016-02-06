@@ -7,13 +7,16 @@ public class Recursion implements hw01{
 	if(n<0){
 	    throw new IllegalArgumentException();
 	}
+	if(n==1 || n==0){
+	    return n;
+	}
         else{
-	    return sqrtHelp(n, (n/1 + 1)/2);
+	    return sqrtHelper(n, (n/1 + 1)/2);
 	}
     }
 
     public double sqrtHelper(double n, double guess){
-	if((guess*guess-n)/n <= 0.0000001){
+	if((guess*guess-n)/n <= 0.000000000000001){
 	    return guess;
 	}
 	else{
