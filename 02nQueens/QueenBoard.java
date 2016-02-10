@@ -22,7 +22,13 @@ public class QueenBoard{
      *Helper method fr solve. 
      */
     private boolean solveH(int col){
-	return false;
+	if(col==data[0].length){
+	    return true;
+	}else{
+	    for(int r=row; r<data.length; r++){
+		addQueen(r, col);
+	    }
+	}
     }
 
     public void printSolution(){
