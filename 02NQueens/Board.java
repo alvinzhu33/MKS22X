@@ -33,17 +33,17 @@ public class Board{
 
     public void Qterritory(int row, int col, int change){
 	int c=col+1;
-	for(int r=row-1; r>0; row--){
+	for(int r=row-1; r>=0 && c<board[0].length; r--){
 	    board[r][c]+=change;
 	    c++;
 	}
-	int c=col+1;
-	for(int r=row+1; r<board.length; r++){
+        c=col+1;
+	for(int r=row+1; r<board.length && c<board[0].length; r++){
 	    board[r][c]+=change;
 	    c++;
 	}
-	for(int c=col+1; c<board[0].length; c++){
-	    board[r][c]+=change;
+	for(c=col+1; c<board[0].length; c++){
+	    board[row][c]+=change;
 	}
     }
 
