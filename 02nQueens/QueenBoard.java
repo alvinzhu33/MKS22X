@@ -14,8 +14,14 @@ public class QueenBoard{
      *final configuration of the board after adding 
      *all n queens.
      */
-    public boolean solve()
-    {
+    public boolean solve(){
+	return solveH(0);
+    }
+
+    /**
+     *Helper method fr solve. 
+     */
+    private boolean solveH(int col){
 	return false;
     }
 
@@ -26,51 +32,41 @@ public class QueenBoard{
 	 */
     }
 
+    /********Do Not Edit Below This Line**********************************/
 
-
-
-
-
-
-
-
-    public boolean addQueen(int row, int col){
+    private boolean addQueen(int row, int col){
 	if(board[row][col] != 0){
 	    return false;
 	}
 	board[row][col] = 1;
-	col++;
 	int offset = 1;
-	while(col < board[row].length){
-	    board[row][col]--;
+	while(col+offset < board[row].length){
+	    board[row][col+offset]--;
 	    if(row - offset >= 0){
-		board[row-offset][col]--;
+		board[row-offset][col+offset]--;
 	    }
 	    if(row + offset < board.length){
-		board[row+offset][col]--;
+		board[row+offset][col+offset]--;
 	    }
-	    col++;
 	    offset++;
 	}
 	return true;
     }
 
-    public boolean removeQueen(int row, int col){
+    private boolean removeQueen(int row, int col){
 	if(board[row][col] != 1){
 	    return false;
 	}
 	board[row][col] = 0;
-	col++;
 	int offset = 1;
-	while(col < board[row].length){
-	    board[row][col]++;
+	while(col+offset < board[row].length){
+	    board[row][col+offset]++;
 	    if(row - offset >= 0){
-		board[row-offset][col]++;
+		board[row-offset][col+offset]++;
 	    }
 	    if(row + offset < board.length){
-		board[row+offset][col]++;
+		board[row+offset][col+offset]++;
 	    }
-	    col++;
 	    offset++;
 	}
 	return true;
@@ -87,18 +83,14 @@ public class QueenBoard{
 	return ans;
     }
 
-
-
-
-    /*
     public static void main(String[]args){
 	QueenBoard b = new QueenBoard(5);
         System.out.println(b);
 	b.addQueen(3,0);
+	System.out.println(b);
 	b.addQueen(0,1);
         System.out.println(b);
 	b.removeQueen(3,0);
         System.out.println(b);
     }
-    */
 }
