@@ -1,59 +1,104 @@
-import java.util.*;
-
 public class QueenBoard{
-    int[][] board;
+    private int[][]board;
     
-    public QueenBoard(int n){
-	board = new int[n][n];
-	for(int x=0; x<n; x++){
-	    for(int y=0; y<n; y++){
-		board[x][y]=0;
-	    }
-	}
+    public QueenBoard(int size){
+	board = new int[size][size];
     }
 
-    public boolean addQ(int row, int col){
-	if(board[row][col]==0){
-	    board[row][col]=1;
-	    Qterritory(row, col, 1);
-	    return true;
-	}else{
-	    return false;
-	}
-    }
-
-    public boolean minusQ(int row, int col){
-	if(board[row][col]==1){
-	    board[row][col]=0;
-	    Qterritory(row, col, -1);
-	    return true;
-	}
+    /**
+     *precondition: board is filled with 0's only.
+     *postcondition: 
+     *-return false, and board is still filled
+     *with 0's for a board that cannot be solved.
+     *-return true, and board is filled with the 
+     *final configuration of the board after adding 
+     *all n queens.
+     */
+    public boolean solve()
+    {
 	return false;
     }
 
-    public void Qterritory(int row, int col, int change){
-	int c=col+1;
-	for(int r=row-1; r>=0 && c<board[0].length; r--){
-	    board[r][c]+=change;
-	    c++;
-	}
-        c=col+1;
-	for(int r=row+1; r<board.length && c<board[0].length; r++){
-	    board[r][c]+=change;
-	    c++;
-	}
-	for(c=col+1; c<board[0].length; c++){
-	    board[row][c]+=change;
-	}
+    public void printSolution(){
+	/**Print the board like toString, except
+	   all negative numbers, and 0's are replaced with '_'
+	   and all 1's are replaced with 'Q'
+	 */
     }
 
-    public void solve(){
-	System.out.println(Arrays.toString(board));
+
+
+
+
+
+
+
+
+    public boolean addQueen(int row, int col){
+	if(board[row][col] != 0){
+	    return false;
+	}
+	board[row][col] = 1;
+	col++;
+	int offset = 1;
+	while(col < board[row].length){
+	    board[row][col]--;
+	    if(row - offset >= 0){
+		board[row-offset][col]--;
+	    }
+	    if(row + offset < board.length){
+		board[row+offset][col]--;
+	    }
+	    col++;
+	    offset++;
+	}
+	return true;
     }
 
-    public void print(){
-	for(int x=0; x<board.length; x++){
-	    System.out.println(Arrays.toString(board[x]));
+    public boolean removeQueen(int row, int col){
+	if(board[row][col] != 1){
+	    return false;
 	}
+	board[row][col] = 0;
+	col++;
+	int offset = 1;
+	while(col < board[row].length){
+	    board[row][col]++;
+	    if(row - offset >= 0){
+		board[row-offset][col]++;
+	    }
+	    if(row + offset < board.length){
+		board[row+offset][col]++;
+	    }
+	    col++;
+	    offset++;
+	}
+	return true;
     }
+
+    public String  toString(){
+	String ans = "";
+	for(int r = 0; r < board.length; r++){
+	    for(int c = 0; c < board[0].length; c++){
+		ans+= board[r][c]+"\t";
+	    }
+	    ans+="\n";
+	}
+	return ans;
+    }
+
+
+
+
+    /*
+    public static void main(String[]args){
+	QueenBoard b = new QueenBoard(5);
+        System.out.println(b);
+	b.addQueen(3,0);
+	b.addQueen(0,1);
+        System.out.println(b);
+	b.removeQueen(3,0);
+        System.out.println(b);
+    }
+    */
 }
