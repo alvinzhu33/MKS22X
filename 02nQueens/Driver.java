@@ -1,6 +1,6 @@
 public class Driver{
     public static void main(String[]args){
-	Board b1 = new Board(5);
+	QueenBoard b1 = new QueenBoard(5);
 	b1.print();
 	System.out.println();
 	
