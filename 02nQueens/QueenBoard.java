@@ -42,7 +42,6 @@ public class QueenBoard{
 	   all negative numbers, and 0's are replaced with '_'
 	   and all 1's are replaced with 'Q'
 	 */
-	solve();
 	String solution="";
 	for(int r=0; r<board.length; r++){
 	    for(int c=0; c<board[r].length; c++){
