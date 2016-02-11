@@ -47,9 +47,9 @@ public class QueenBoard{
 	for(int r=0; r<board.length; r++){
 	    for(int c=0; c<board[r].length; c++){
 		if(board[r][c]==1){
-		    solution+="Q";
+		    solution+="Q\t";
 		}else{
-		    solution+="-";
+		    solution+="-\t";
 		}
 	    }
 	    solution+="\n";
@@ -106,16 +106,5 @@ public class QueenBoard{
 	    ans+="\n";
 	}
 	return ans;
-    }
-
-    public static void main(String[]args){
-	QueenBoard[] boards = new QueenBoard[10];
-	for(int x=1; x<11; x++){
-	    boards[x-1] = new QueenBoard(x);
-	}
-	for(int x=0; x<10; x++){
-	    System.out.println(x+1+" Queens");
-	    boards[x].printSolution();
-	}
     }
 }
