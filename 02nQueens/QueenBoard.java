@@ -42,7 +42,19 @@ public class QueenBoard{
 	   all negative numbers, and 0's are replaced with '_'
 	   and all 1's are replaced with 'Q'
 	 */
-	
+	solve();
+	String solution="";
+	for(int r=0; r<board.length; r++){
+	    for(int c=0; c<board[r].length; c++){
+		if(board[r][c]==1){
+		    solution+="Q";
+		}else{
+		    solution+="-";
+		}
+	    }
+	    solution+="\n";
+	}
+	System.out.println(solution);
     }
 
     /********Do Not Edit Below This Line**********************************/
@@ -103,8 +115,7 @@ public class QueenBoard{
 	}
 	for(int x=0; x<10; x++){
 	    System.out.println(x+1+" Queens");
-	    System.out.println(boards[x].solve());
-	    System.out.println(boards[x]);
+	    boards[x].printSolution();
 	}
     }
 }
