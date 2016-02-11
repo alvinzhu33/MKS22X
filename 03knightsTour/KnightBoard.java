@@ -7,11 +7,11 @@ public class KnightBoard{
 	board = new int[s+4][s+4];
     }
 
-    private boolean solve(){
-	
+    public boolean solve(){
+	return false;
     }
 
-    private void printSolution(){
+    public void printSolution(){
 	String solution="";
 	for(int r=0; r<board.length; r++){
 	    for(int c=0; c<board.length; c++){
@@ -19,6 +19,7 @@ public class KnightBoard{
 	    }
 	    solution+="\n";
 	}
+	System.out.println(solution);
     }
 
     private boolean solved(){
