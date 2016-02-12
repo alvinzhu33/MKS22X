@@ -8,10 +8,15 @@ public class KnightBoard{
 	boundary();
     }
 
+    public KnightBoard(int row, int col){
+	board = new int[row+4][col+4];
+	boundary();
+    }
+
     public void boundary(){
 	for(int r=0; r<board.length; r++){
-	    for(int c=0; c<board.length; c++){
-		if(r<2 || c<2 || r>board.length-3 || c>board.length-3){
+	    for(int c=0; c<board[r].length; c++){
+		if(r<2 || c<2 || r>board.length-3 || c>board[r].length-3){
 		    board[r][c]=-1;
 		}
 	    }
@@ -74,7 +79,7 @@ public class KnightBoard{
     public void printSolution(){
 	String solution="";
 	for(int r=0; r<board.length; r++){
-	    for(int c=0; c<board.length; c++){
+	    for(int c=0; c<board[r].length; c++){
 		solution+=board[r][c]+"\t";
 	    }
 	    solution+="\n";

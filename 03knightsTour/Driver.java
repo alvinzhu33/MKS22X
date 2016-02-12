@@ -1,9 +1,12 @@
 public class Driver{
     public static void main(String[]args){
-  	int size = Integer.parseInt(args[0]);
-	System.out.println(size);
-
-	KnightBoard kb = new KnightBoard(size);
+	KnightBoard kb;
+	if(args.length==1){
+	    kb = new KnightBoard(Integer.parseInt(args[0]));
+	}
+	else{
+	    kb = new KnightBoard(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
+	}
 	
 	kb.printSolution();
     }
