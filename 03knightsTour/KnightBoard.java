@@ -103,4 +103,8 @@ public class KnightBoard{
 	    System.out.println(s);
 	}
     }
+
+    public String name(){
+	return "Zhu,Alvin";
+    }
 }

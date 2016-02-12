@@ -106,4 +106,8 @@ public class QueenBoard{
 	}
 	return ans;
     }
+
+    public String name(){
+	return "Zhu,Alvin";
+    } 
 }
