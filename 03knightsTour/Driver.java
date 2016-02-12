@@ -8,6 +8,6 @@ public class Driver{
 	    kb = new KnightBoard(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
 	}
 	
-	kb.printSolution();
+	System.out.println(kb.solve());
     }
 }

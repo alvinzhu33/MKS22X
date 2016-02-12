@@ -73,7 +73,29 @@ public class KnightBoard{
     }
 
     public boolean solve(){
+	for(int r=2; r<board.length-3;r++){
+	    for(int c=2; c<board[r].length-3; c++){
+		return solveH(0,r,c);
+	    }
+	}
 	return false;
+    }
+
+    public boolean solveH(int counter, int row, int col){
+	printSolution();
+	if(counter>board.length*board.length){
+	    return true;
+	}
+	else{
+	    for(int x=0; x<8; x++){
+		int r = findNext(x, row, col)[0];
+		int c = findNext(x, row, col)[1];
+		if(addKnight(counter,r,c)){
+		    return solveH(counter+1,r,c);
+		}
+	    }
+	    return false;
+	}
     }
 
     public void printSolution(){
@@ -90,7 +112,7 @@ public class KnightBoard{
     private boolean solved(){
 	for(int r=0; r<board.length; r++){
 	    for(int c=0; c<board.length; c++){
-		if(board[r][c]==0 || board[r][c]==1){
+		if(board[r][c]==0){
 		    return false;
 		}
 	    }
