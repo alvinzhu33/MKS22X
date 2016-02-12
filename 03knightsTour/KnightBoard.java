@@ -109,17 +109,6 @@ public class KnightBoard{
 	System.out.println(solution);
     }
 
-    private boolean solved(){
-	for(int r=0; r<board.length; r++){
-	    for(int c=0; c<board.length; c++){
-		if(board[r][c]==0){
-		    return false;
-		}
-	    }
-	}
-	return true;
-    }
-
     private void debug(String s){
 	if(DEBUG){
 	    System.out.println(s);
