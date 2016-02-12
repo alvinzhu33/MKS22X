@@ -29,32 +29,6 @@ public class KnightBoard{
     }
     
     public int[] findNext(int m, int row, int col){
-	/*if(m%2==0){
-	    if(m/2==0){
-		if(board[row-2][col+1]==0){
-		    board[row-2][col+1]=board[row][col]+1;
-		    return true;
-		}
-	    }
-	    if(m/2==1){
-		if(board[row+1][col+2]==0){
-		    board[row+1][col+2]=board[row][col]+1;
-		    return true;
-		}
-	    }
-	    if(m/2==2){
-		if(board[row+2][col-1]==0){
-		    board[row+2][col-1]=board[row][col]+1;
-		    return true;
-		}
-	    }
-	    if(m/2==3){
-		if(board[row-1][col-2]==0){
-		    board[row-1][col-2]=board[row][col]+1;
-		    return true;
-		}
-	    }
-	    }*/
 	int[] position = new int[2];
 	if(m%2==0){
 	    if(m/2==0){
