@@ -46,9 +46,9 @@ public class QueenBoard{
 	for(int r=0; r<board.length; r++){
 	    for(int c=0; c<board[r].length; c++){
 		if(board[r][c]==1){
-		    solution+="Q\t";
+		    solution+="Q ";
 		}else{
-		    solution+="-\t";
+		    solution+="- ";
 		}
 	    }
 	    solution+="\n";
