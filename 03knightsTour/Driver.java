@@ -9,5 +9,6 @@ public class Driver{
 	}
 	
 	System.out.println(kb.solve());
+	kb.printSolution();
     }
 }
