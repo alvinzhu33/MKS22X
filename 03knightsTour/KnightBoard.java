@@ -14,6 +14,7 @@ public class KnightBoard{
     }
 
     public void boundary(){
+	//Makes the -1's
 	for(int r=0; r<board.length; r++){
 	    for(int c=0; c<board[r].length; c++){
 		if(r<2 || c<2 || r>board.length-3 || c>board[r].length-3){
@@ -26,6 +27,7 @@ public class KnightBoard{
     }
 
     public boolean addKnight(int c, int row, int col){
+	//Adds the knight to the specific area
 	if(board[row][col]!=0){
 	    return false;
 	}
@@ -36,6 +38,7 @@ public class KnightBoard{
     }
     
     public int[] findNext(int m, int row, int col){
+	//Find the possible next areas
 	int[] position = new int[2];
 	if(m==0){
 	    position[0]=row-2;
@@ -74,7 +77,7 @@ public class KnightBoard{
 
     public boolean solve(){
 	for(int r=2; r<board.length-2;r++){
-	    for(int c=2; c<board[r].length-2/*3*/; c++){
+	    for(int c=2; c<board[r].length-2; c++){
 		if(solveH(1,r,c)){
 		    return true;
 		}
@@ -85,15 +88,21 @@ public class KnightBoard{
     }
 
     public boolean solveH(int counter, int row, int col){
-	printSolution();
-	if(counter>=(board.length-4)*(board.length-4)){
+	//printSolution();
+
+	//Checks if the counter is already at the max
+	if(counter>(board.length-4)*(board.length-4)){
 	    return true;
 	}
+	//Checks if the area is an empty space
 	if(board[row][col]!=0){
 	    return false;
 	}
 	else{
+	    //Adds knight
 	    addKnight(counter,row,col);
+
+	    //Loops through all possible areas
 	    for(int x=0; x<8; x++){
 		int r = findNext(x, row, col)[0];
 		int c = findNext(x, row, col)[1];
