@@ -98,15 +98,20 @@ public class KnightBoard{
 	//Checks if the area is an empty space
 	else{
 	    if(addKnight(counter,row,col)){
-		//Loops through all possible areas
-		for(int x=0; x<8; x++){
-		    int r = findNext(x, row, col)[0];
-		    int c = findNext(x, row, col)[1];
-		    if(solveH(counter+1,r,c)){
-			return true;
-		    }
+		//NOT loop through all possible areas
+		if(solveH(counter+1, row+2, col+1) ||
+		   solveH(counter+1, row+2, col-1) ||
+		   solveH(counter+1, row+1, col+2) ||
+		   solveH(counter+1, row+1, col-2) ||
+		   solveH(counter+1, row-1, col+2) ||
+		   solveH(counter+1, row-1, col-2) ||
+		   solveH(counter+1, row-2, col+1) ||
+		   solveH(counter+1, row-2, col-1)){
+		    return true;
 		}
-		board[row][col]=0;
+		else{
+		    board[row][col]=0;
+		}
 	    }
 	}
 	return false;
