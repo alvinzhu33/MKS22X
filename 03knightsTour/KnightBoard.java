@@ -91,26 +91,23 @@ public class KnightBoard{
 	//printSolution();
 
 	//Checks if the counter is already at the max
-	if(counter>(board.length-4)*(board.length-4)){
+	if(counter>=(board.length-4)*(board[0].length-4) &&
+	   addKnight(counter,row,col)){
 	    return true;
 	}
 	//Checks if the area is an empty space
-	if(board[row][col]!=0){
-	    return false;
-	}
 	else{
-	    //Adds knight
-	    addKnight(counter,row,col);
-
-	    //Loops through all possible areas
-	    for(int x=0; x<8; x++){
-		int r = findNext(x, row, col)[0];
-		int c = findNext(x, row, col)[1];
-		if(solveH(counter+1,r,c)){
-		    return true;
+	    if(addKnight(counter,row,col)){
+		//Loops through all possible areas
+		for(int x=0; x<8; x++){
+		    int r = findNext(x, row, col)[0];
+		    int c = findNext(x, row, col)[1];
+		    if(solveH(counter+1,r,c)){
+			return true;
+		    }
 		}
+		board[row][col]=0;
 	    }
-	    board[row][col]=0;
 	}
 	return false;
     }
