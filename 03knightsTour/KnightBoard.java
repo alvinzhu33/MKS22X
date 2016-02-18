@@ -4,11 +4,17 @@ public class KnightBoard{
     int[][] board;
 
     public KnightBoard(int s){
+	if(s<1){
+	    throw new IllegalArgumentException();
+	}
 	board = new int[s+4][s+4];
 	boundary();
     }
 
     public KnightBoard(int row, int col){
+	if(row<1 || col<1){
+	    throw new IllegalArgumentException();
+	}
 	board = new int[row+4][col+4];
 	boundary();
     }
