@@ -43,7 +43,7 @@ public class KnightBoard{
 	}
     }
     
-    public int[] findNext(int m, int row, int col){
+    /*public int[] findNext(int m, int row, int col){
 	//Find the possible next areas
 	int[] position = new int[2];
 	if(m==0){
@@ -79,7 +79,7 @@ public class KnightBoard{
 	    position[0]=col-2;
 	}
 	return position;
-    }
+	}*/
 
     public boolean solve(){
 	for(int r=2; r<board.length-2;r++){
@@ -94,8 +94,6 @@ public class KnightBoard{
     }
 
     public boolean solveH(int counter, int row, int col){
-	//printSolution();
-
 	//Checks if the counter is already at the max
 	if(counter>=(board.length-4)*(board[0].length-4) &&
 	   addKnight(counter,row,col)){
@@ -124,10 +122,14 @@ public class KnightBoard{
     }
 
     public void printSolution(){
+	boolean bigTen = (board.length-4)*(board[0].length-4)>=10;
 	String solution="";
-	for(int r=0; r<board.length; r++){
-	    for(int c=0; c<board[r].length; c++){
-		solution+=board[r][c]+"\t";
+	for(int r=2; r<board.length-2; r++){
+	    for(int c=2; c<board[r].length-2; c++){
+		if(bigTen && board[r][c]<10){
+		    solution+=" ";
+		}			
+		solution+=board[r][c]+" ";
 	    }
 	    solution+="\n";
 	}
