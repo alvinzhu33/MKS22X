@@ -8,9 +8,9 @@ public class Bronze{
 
     public Bronze(){
 	importFile();
-	/*print(board);
+	print(board);
 	print(operations);
-	System.out.println(elevation);*/
+	System.out.println(elevation);
     }
 
     public void print(int[][] a1){
@@ -28,7 +28,7 @@ public class Bronze{
     }
     
     public void importFile(){
-	File read = new File("makelake.txt");
+	File read = new File("makelake.in");
 	try{
 	    Scanner scan = new Scanner(read);
 	    int row = scan.nextInt();
@@ -54,6 +54,10 @@ public class Bronze{
 	}catch(FileNotFoundException e){
 	    System.out.println("No such file");
 	}
+    }
+
+    public void answer(double n){
+	System.out.println(n+" ,6,Zhu,Alvin");
     }
     
     public static void main(String[]args){
