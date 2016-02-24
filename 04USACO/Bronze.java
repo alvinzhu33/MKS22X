@@ -8,23 +8,11 @@ public class Bronze{
 
     public Bronze(){
 	importFile();
-	print(board);
-	print(operations);
-	System.out.println(elevation);
-    }
-
-    public void print(int[][] a1){
-	String print="";
-	for(int r=0; r<a1.length; r++){
-	    for(int c=0; c<a1[r].length; c++){
-		if(a1[r][c]<10){
-		    print+=" ";
-		}
-		print+=a1[r][c]+" ";
-	    }
-	    print+="\n";
-	}
-	System.out.println(print);
+	stomp();
+	//print(board);
+	dig();
+	//print(board);
+	answer();
     }
     
     public void importFile(){
@@ -56,8 +44,64 @@ public class Bronze{
 	}
     }
 
-    public void answer(double n){
-	System.out.println(n+" ,6,Zhu,Alvin");
+    public void stomp(){
+	for(int n=0; n<operations.length; n++){
+	    int R_s = operations[n][0]-1;
+	    int C_s = operations[n][1]-1;
+	    int D_s = operations[n][2];
+	    int peak=0;
+	    for(int row=R_s; row<R_s+3; row++){
+		for(int col=C_s; col<C_s+3; col++){
+		    if(board[row][col]>=peak){
+			peak=board[row][col];
+		    }
+		}
+	    }
+	    peak-=D_s;
+	    for(int row=R_s; row<R_s+3; row++){
+		for(int col=C_s; col<C_s+3; col++){
+		    if(board[row][col]>=peak){
+			board[row][col]=peak;
+		    }
+		}
+	    }
+	}
+    }
+
+    public void dig(){
+	for(int r=0; r<board.length; r++){
+	    for(int c=0; c<board[r].length; c++){
+		board[r][c]=elevation-board[r][c];
+		if(board[r][c]<0){
+		    board[r][c]=0;
+		}
+	    }
+	}
+    }
+
+    public void answer(){
+	int n=0;
+	for(int r=0; r<board.length; r++){
+	    for(int c=0; c<board[r].length; c++){
+		n+=board[r][c];
+	    }
+	}
+	n=n*72*72;
+	System.out.println(n+" cubic inches,6,Zhu,Alvin");
+    }
+    
+    public void print(int[][] a1){
+	String print="";
+	for(int r=0; r<a1.length; r++){
+	    for(int c=0; c<a1[r].length; c++){
+		if(a1[r][c]<10){
+		    print+=" ";
+		}
+		print+=a1[r][c]+" ";
+	    }
+	    print+="\n";
+	}
+	System.out.println(print);
     }
     
     public static void main(String[]args){
