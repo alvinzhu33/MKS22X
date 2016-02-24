@@ -87,7 +87,7 @@ public class Bronze{
 	    }
 	}
 	n=n*72*72;
-	System.out.println(n+" cubic inches,6,Zhu,Alvin");
+	System.out.println(n+",6,Zhu,Alvin");
     }
     
     public void print(int[][] a1){
