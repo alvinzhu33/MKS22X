@@ -19,7 +19,26 @@ public class Maze{
       3. When the file is not found, print an error and exit the program.
     */
     public Maze(String filename, boolean ani){
-        //COMPLETE CONSTRUCTOR
+        File read = new File(filename);
+	try{
+	    Scanner dataFind = new Scanner(read);
+	    Scanner scan = new Scanner(read);
+	    int rows=0;
+	    while(dataFind.hasNextLine()){
+		rows++;
+	    }
+	    int cols = (dataFind.nextLine()).length();
+	    maze = new Array[rows][cols];
+	    while(scan.hasNextLine()){
+		String line = scan.nextLine();
+		for(int p=0; p<line.length(); p++){
+		    
+		}
+	    }
+	    scan.close();
+	}catch(FileNotFoundException e){
+	    System.out.println("File not found");
+	}
     }
 
 
