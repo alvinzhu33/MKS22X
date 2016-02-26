@@ -34,6 +34,15 @@ public class Maze{
 	    }
 
 	    scan.close();
+	    
+	    for(int r=0; r<maze.length; r++){
+		for(int i=0; i<maze[r].length; i++){
+		    if(maze[r][i]=='S'){
+			startx=i;
+			starty=r;
+		    }
+		}
+	    }
 	}catch(FileNotFoundException e){
 	    System.out.println("File not found");
 	}
@@ -74,8 +83,24 @@ public class Maze{
             System.out.println(this);
             wait(20);
         }
-
-        //COMPLETE SOLVE
+	if(maze[x][y]=='E'){
+	    return true;
+	}
+	if(maze[x][y]!=' '){
+	    return false;
+	}
+	else{
+	    maze[x][y]='@';
+	    if(solve(x+1,y) ||
+	       solve(x-1,y) ||
+	       solve(x,y+1) ||
+	       solve(x,y-1)){
+		return true;
+	    }
+	    else{
+		maze[x][y]='.';
+	    }
+	}
         return false; //so it compiles
     }
 
