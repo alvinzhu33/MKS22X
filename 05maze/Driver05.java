@@ -1,17 +1,17 @@
 public class Driver05{
 
     public static void main(String[]args){
-	Maze f;
-        f = new Maze("data2.dat",true);//true animates the maze.
+	/*Maze f;
+        f = new Maze("data3.dat",true);//true animates the maze.
         
         f.clearTerminal();
         f.solve();
 
         f.clearTerminal();
-        System.out.println(f);
+        System.out.println(f);*/
 
 	
-        /*Maze[] f= new Maze[3];
+        Maze[] f= new Maze[3];
 	for(int i=1; i<4; i++){
 	    f[i-1] = new Maze("data"+i+".dat",true);//true animates the maze.
 	}
@@ -21,6 +21,7 @@ public class Driver05{
 	    f[i].solve();
 	    
 	    f[i].clearTerminal();
-	    System.out.println(f[i]);*/
+	    System.out.println(f[i]);
+	}
     }
 }

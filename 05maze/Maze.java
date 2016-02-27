@@ -37,8 +37,8 @@ public class Maze{
 		for(int c=0; c<cols; c++){
 		    maze[r][c]=line.charAt(c);
 		    if(line.charAt(c)=='S'){
-			starty=r;
-			startx=c;
+			startx=r;
+			starty=c;
 		    }
 		}
 	    }
@@ -60,10 +60,6 @@ public class Maze{
        When no S is contained in maze, print an error and return false.
     */
     public boolean solve(){
-	if(animate){
-	    clearTerminal();
-	    wait(20);
-	}
         if(startx < 0){
             System.out.println("No starting point 'S' found in maze.");
             return false;
