@@ -21,32 +21,33 @@ public class Maze{
     public Maze(String filename, boolean ani){
         File read = new File(filename);
 	try{
-	    Scanner scan = new Scanner(read);
-	    String data="";
-	    while(scan.hasNextLine()){
-		data+=scan.nextLine()+"\n";
+	    Scanner data = new Scanner(read);
+	    Scanner copy = new Scanner(read);
+	    
+	    int rows=0;
+	    int cols=0;
+	    while(data.hasNextLine()){
+	        rows++;
+	        cols=(data.nextLine()).length();
 	    }
 	    
-	    String[] first = data.split("\n");
-	    maze = new char[first.length][first[0].length()];
-	    for(int r=0; r<maze.length; r++){
-		maze[r]=first[r].toCharArray();
-	    }
-
-	    scan.close();
-	    
-	    for(int r=0; r<maze.length; r++){
-		for(int i=0; i<maze[r].length; i++){
-		    if(maze[r][i]=='S'){
-			startx=i;
+	    maze = new char[rows][cols];
+	    for(int r=0; r<rows; r++){
+		String line = copy.nextLine();
+		for(int c=0; c<cols; c++){
+		    maze[r][c]=line.charAt(c);
+		    if(line.charAt(c)=='S'){
 			starty=r;
+			startx=c;
 		    }
 		}
 	    }
+
+	    data.close();
+	    copy.close();
 	}catch(FileNotFoundException e){
 	    System.out.println("File not found");
 	}
-	System.out.println(Arrays.deepToString(maze));
     }
 
 
