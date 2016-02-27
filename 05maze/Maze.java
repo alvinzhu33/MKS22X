@@ -45,9 +45,12 @@ public class Maze{
 
 	    data.close();
 	    copy.close();
+
+	    animate=ani;
 	}catch(FileNotFoundException e){
 	    System.out.println("File not found");
 	}
+	System.out.println(Arrays.deepToString(maze));
     }
 
 
@@ -57,6 +60,10 @@ public class Maze{
        When no S is contained in maze, print an error and return false.
     */
     public boolean solve(){
+	if(animate){
+	    clearTerminal();
+	    wait(20);
+	}
         if(startx < 0){
             System.out.println("No starting point 'S' found in maze.");
             return false;
@@ -83,7 +90,7 @@ public class Maze{
     private boolean solve(int x, int y){
         if(animate){
             System.out.println(this);
-            wait(20);
+            wait(40);
         }
 	if(maze[x][y]=='E'){
 	    return true;
