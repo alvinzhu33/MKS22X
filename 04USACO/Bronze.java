@@ -8,11 +8,6 @@ public class Bronze{
 
     public Bronze(){
 	importFile();
-	stomp();
-	//print(board);
-	dig();
-	//print(board);
-	answer();
     }
     
     public void importFile(){
@@ -106,5 +101,9 @@ public class Bronze{
     
     public static void main(String[]args){
 	Bronze b = new Bronze();
+
+	b.stomp();
+	b.dig();
+	b.answer();
     }
 }

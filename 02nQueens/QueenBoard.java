@@ -2,7 +2,12 @@ public class QueenBoard{
     private int[][]board;
     
     public QueenBoard(int size){
-	board = new int[size][size];
+	if(size<=0){
+	    throw new IllegalArgumentException();
+	}
+	else{
+	    board = new int[size][size];
+	}
     }
 
     /**
