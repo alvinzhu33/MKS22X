@@ -116,7 +116,7 @@ public class Maze{
         System.out.println(CLEAR_SCREEN);
     }
 
-    public String toString(){
+    /*public String toString(){
         int maxx = maze.length;
         int maxy = maze[0].length;
         String ans = "";
@@ -128,6 +128,27 @@ public class Maze{
                 ans += "\n";
             }
             char c =  maze[i % maxx][i / maxx];
+            if(c == '#'){
+                ans += color(38,47)+c;
+            }else{
+                ans += color(32,40)+c;
+            }
+        }
+        return HIDE_CURSOR + go(0,0) + ans + "\n" + SHOW_CURSOR + color(37,40);
+	}*/
+
+    public String toString(){
+        int maxy = maze.length;
+        int maxx = maze[0].length;
+        String ans = "";
+        if(animate){
+            ans = "Solving a maze that is " + maxx + " by " + maxy + "\n";
+        }
+        for(int i = 0; i < maxx * maxy; i++){
+            if(i % maxx == 0 && i != 0){
+                ans += "\n";
+            }
+            char c =  maze[i / maxx][i % maxx];
             if(c == '#'){
                 ans += color(38,47)+c;
             }else{
