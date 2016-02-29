@@ -41,8 +41,20 @@ public class Silver{
 	start();
 	for(int step=1; step<steps; step++){
 	    for(int r=0; r<board.length; r++){
-		for(int c=0; c<board[r].length; c++){
-		    change(r,c);
+		if(board[r][0]==0){
+		    for(int c=0; c<board[r].length; c+=2){
+			change(r,c);
+		    }
+		    for(int c=1; c<board[r].length; c+=2){
+			change(r,c);
+		    }
+		}else{
+		    for(int c=1; c<board[r].length; c+=2){
+			change(r,c);
+		    }
+		    for(int c=0; c<board[r].length; c+=2){
+			change(r,c);
+		    }
 		}
 	    }
 	}
