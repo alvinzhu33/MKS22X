@@ -8,7 +8,7 @@ public class Silver{
     int startr,startc,endr,endc;
 
     public Silver(){
-	File read = new File("ctravel2.in");
+	File read = new File("ctravel.in");
 	try{
 	    Scanner scan = new Scanner(read);
 	    int row = scan.nextInt();
