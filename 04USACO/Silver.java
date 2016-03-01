@@ -41,7 +41,7 @@ public class Silver{
 	start();
 	for(int step=1; step<steps; step++){
 	    for(int r=0; r<board.length; r++){
-		if(board[r][0]==0){
+		if((startc%2==1 && startc%2==1)||(startr%2==0 && startc==0)){
 		    for(int c=0; c<board[r].length; c+=2){
 			change(r,c);
 		    }
@@ -78,7 +78,7 @@ public class Silver{
     }
 
     public void change(int row, int col){
-	if(board[row][col]>-1){
+	if(board[row][col]>0){
 	    board[row][col]=0;
 	}else{
 	    if(board[row][col]!=-1){
@@ -88,10 +88,11 @@ public class Silver{
 		if(row+1<board.length && board[row+1][col]!=-1){
 		    board[row][col]+=board[row+1][col];
 		}
-		if(col-1>0 && board[row-1][col]!=-1){
+		if(col-1>0 && board[row][col-1]!=-1){
 		    board[row][col]+=board[row][col-1];
-		}if(col+1<board[0].length && board[row][col+1]!=-1){
-		    board[row][col]+=board[row-1][col];
+		}
+		if(col+1<board[0].length && board[row][col+1]!=-1){
+		    board[row][col]+=board[row][col+1];
 		}
 	    }
 	}
