@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Merge{
-    public static int[] merge(int[]aryA, int[]aryB){
+    public static int[] easymerge(int[]aryA, int[]aryB){
 	int[] sort = new int[aryA.length+aryB.length];
 	int aPlace=0;
 	int bPlace=0;
@@ -27,6 +27,16 @@ public class Merge{
 	}
 	return sort;
     }
+
+    /*public static void merge(int[]data, int startA, int endA, int startB, int endB){
+	int[] copy = new int[data.length];
+	for(int i=0; i<data.length; i++){
+	    copy[i]=data[i];
+	}
+
+	int aPlace=startA;
+	int bPlace=startB;
+    }*/
 
     public static void main(String[]args){
 	int[] a = new int[] {1,3,5,8,9,60};
