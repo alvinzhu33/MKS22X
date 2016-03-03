@@ -110,7 +110,7 @@ public class Sorts{
 
     //----------------------------------------------------------------
     //Merge Sort
-    public static int[] easymerge(int[]aryA, int[]aryB){
+    public static int[] easyMerge(int[]aryA, int[]aryB){
 	int[] sort = new int[aryA.length+aryB.length];
 	int aPlace=0;
 	int bPlace=0;
