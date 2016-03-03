@@ -166,6 +166,21 @@ public class Sorts{
 	    copy[sortPlace]=data[b];
 	    sortPlace++;
 	}
-	System.out.println(Arrays.toString(copy));
+
+	for(int i=startA; i<copy.length; i++){
+	    data[i]=copy[i-startA];
+	}
+	System.out.println(Arrays.toString(data));
+    }
+
+    public static void main(String[]args){
+	int[] a = new int[] {1,3,5,8,9,60};
+	int[] b = new int[] {0,2,3,6,10,22,53};
+	int[] c = new int[] {1,3,5,10,2612,2,7,9,10};
+	int[] d = new int[] {1,15,261,1,6,2,7,8,10,2,5};
+	System.out.println(Arrays.toString(easymerge(a,b)));
+
+	merge(c,0,4,5,8);
+	merge(d,3,4,5,8);
     }
 }
