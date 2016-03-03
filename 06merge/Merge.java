@@ -28,19 +28,42 @@ public class Merge{
 	return sort;
     }
 
-    /*public static void merge(int[]data, int startA, int endA, int startB, int endB){
-	int[] copy = new int[data.length];
-	for(int i=0; i<data.length; i++){
-	    copy[i]=data[i];
-	}
+    public static void merge(int[]data, int startA, int endA, int startB, int endB){
+	int[] copy = new int[(endA-startA)+1+(endB-startB)+1];
 
 	int aPlace=startA;
 	int bPlace=startB;
-    }*/
+	int sortPlace=0;
+
+	while(aPlace<=endA && bPlace<=endB){
+	    if(data[aPlace]<=data[bPlace]){
+		copy[sortPlace]=data[aPlace];
+		aPlace++;
+		sortPlace++;
+	    }else{
+		copy[sortPlace]=data[bPlace];
+		bPlace++;
+		sortPlace++;
+	    }
+	}
+	
+	for(int a=aPlace; a<=endA; a++){
+	    copy[sortPlace]=data[a];
+	    sortPlace++;
+	}
+	for(int b=bPlace; b<=endB; b++){
+	    copy[sortPlace]=data[b];
+	    sortPlace++;
+	}
+	System.out.println(Arrays.toString(copy));
+    }
 
     public static void main(String[]args){
 	int[] a = new int[] {1,3,5,8,9,60};
 	int[] b = new int[] {0,2,3,6,10,22,53};
-	merge(a,b);
+	int[] c = new int[] {1,3,5,10,2612,2,7,9,10};
+	easymerge(a,b);
+
+	merge(c,0,4,5,8);
     }
 }
