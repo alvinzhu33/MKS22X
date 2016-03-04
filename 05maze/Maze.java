@@ -30,7 +30,8 @@ public class Maze{
 	        rows++;
 	        cols=(data.nextLine()).length();
 	    }
-	    
+
+	    startx=-1;
 	    maze = new char[rows][cols];
 	    for(int r=0; r<rows; r++){
 		String line = copy.nextLine();
