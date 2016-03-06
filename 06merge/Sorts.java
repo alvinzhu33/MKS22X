@@ -137,6 +137,25 @@ public class Sorts{
 	return sort;
     }
 
+    public static void mergeSort(int[]data){
+	mergesortHelper(data, 0, data.length);
+    }
+    
+    public static void mergesortHelper(int[] data ,int start,int end){
+	for(int i=start; i+2<end; i+=2){
+	    merge(data,i,i,i+1,i+1);
+	}
+	for(int i=start; i+4<end; i+=4){
+	    merge(data,i,i+1,i+2,i+3);
+	}
+	for(int i=start; i+8<end; i+=8){
+	    merge(data,i,i+3,i+4,i+8);
+	}
+	for(int i=start; i+16<end; i+=16){
+	    merge(data,i,i+8,i+9,i+16);
+	}
+    }//array,start,end... remember the helper is the real functional mergesort. 
+    
     public static void merge(int[]data, 
 			     int startA, int endA, 
 			     int startB, int endB){
@@ -166,11 +185,14 @@ public class Sorts{
 	    copy[sortPlace]=data[b];
 	    sortPlace++;
 	}
-
-	for(int i=startA; i<copy.length; i++){
-	    data[i]=copy[i-startA];
+	
+	for(int i=0; i<copy.length; i++){
+	    data[i+startA]=copy[i];
 	}
+	
+	System.out.println(Arrays.toString(copy));
 	System.out.println(Arrays.toString(data));
+	System.out.println("----");
     }
 
     public static void main(String[]args){
@@ -178,9 +200,8 @@ public class Sorts{
 	int[] b = new int[] {0,2,3,6,10,22,53};
 	int[] c = new int[] {1,3,5,10,2612,2,7,9,10};
 	int[] d = new int[] {1,15,261,1,6,2,7,8,10,2,5};
-	System.out.println(Arrays.toString(easymerge(a,b)));
-
-	merge(c,0,4,5,8);
-	merge(d,3,4,5,8);
+        mergeSort(d);
+	//merge(d,0,0,1,1);
+	//merge(d,2,2,3,3);
     }
 }
