@@ -142,19 +142,19 @@ public class Sorts{
     }
     
     public static void mergesortHelper(int[] data ,int start,int end){
-	for(int i=start; i+2<end; i+=2){
+	for(int i=start; i<end; i+=2){
 	    merge(data,i,i,i+1,i+1);
 	}
-	for(int i=start; i+4<end; i+=4){
+	for(int i=start; i<end; i+=4){
 	    merge(data,i,i+1,i+2,i+3);
 	}
-	for(int i=start; i+8<end; i+=8){
+	for(int i=start; i<end; i+=8){
 	    merge(data,i,i+3,i+4,i+8);
 	}
-	for(int i=start; i+16<end; i+=16){
+	for(int i=start; i<end; i+=16){
 	    merge(data,i,i+8,i+9,i+16);
 	}
-    }//array,start,end... remember the helper is the real functional mergesort. 
+    } 
     
     public static void merge(int[]data, 
 			     int startA, int endA, 
@@ -165,7 +165,7 @@ public class Sorts{
 	int bPlace=startB;
 	int sortPlace=0;
 
-	while(aPlace<=endA && bPlace<=endB){
+	while(aPlace<=endA && bPlace<=endB && bPlace<data.length){
 	    if(data[aPlace]<=data[bPlace]){
 		copy[sortPlace]=data[aPlace];
 		aPlace++;
@@ -177,16 +177,16 @@ public class Sorts{
 	    }
 	}
 	
-	for(int a=aPlace; a<=endA; a++){
+	for(int a=aPlace; a<=endA && a<data.length; a++){
 	    copy[sortPlace]=data[a];
 	    sortPlace++;
 	}
-	for(int b=bPlace; b<=endB; b++){
+	for(int b=bPlace; b<=endB && b<data.length; b++){
 	    copy[sortPlace]=data[b];
 	    sortPlace++;
 	}
 	
-	for(int i=0; i<copy.length; i++){
+	for(int i=0; i<copy.length && i+startA<data.length; i++){
 	    data[i+startA]=copy[i];
 	}
 	
