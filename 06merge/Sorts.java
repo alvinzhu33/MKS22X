@@ -139,6 +139,7 @@ public class Sorts{
 
     public static void mergeSort(int[]data){
 	mergesortHelper(data, 0, data.length);
+	printArray(data);
     }
     
     public static void mergesortHelper(int[] data ,int start,int end){
@@ -149,10 +150,24 @@ public class Sorts{
 	    merge(data,i,i+1,i+2,i+3);
 	}
 	for(int i=start; i<end; i+=8){
-	    merge(data,i,i+3,i+4,i+8);
+	    merge(data,i,i+3,i+4,i+7);
 	}
 	for(int i=start; i<end; i+=16){
-	    merge(data,i,i+8,i+9,i+16);
+	    merge(data,i,i+7,i+8,i+15);
+	}
+	for(int i=start; i<end; i+=32){
+	    merge(data,i,i+15,i+16,i+31);
+	}
+	if(data.length>32){
+	    for(int i=start; i<end; i+=64){
+		merge(data,i,i+31,i+32,i+63);
+	    }
+	    for(int i=start; i<end; i+=128){
+		merge(data,i,i+63,i+64,i+127);
+	    }
+	    for(int i=start; i<end; i+=256){
+		merge(data,i,i+127,i+128,i+255);
+	    }
 	}
     } 
     
@@ -189,19 +204,18 @@ public class Sorts{
 	for(int i=0; i<copy.length && i+startA<data.length; i++){
 	    data[i+startA]=copy[i];
 	}
-	
-	System.out.println(Arrays.toString(copy));
-	System.out.println(Arrays.toString(data));
-	System.out.println("----");
+
+	//System.out.println(Arrays.toString(copy));
+	//System.out.println(Arrays.toString(data));
+	//System.out.println("---------");
     }
 
     public static void main(String[]args){
-	int[] a = new int[] {1,3,5,8,9,60};
-	int[] b = new int[] {0,2,3,6,10,22,53};
-	int[] c = new int[] {1,3,5,10,2612,2,7,9,10};
+	int[] a = new int[] {6,5,2,7,2,13,8,31,3,78,4,23,78,32};
+	int[] b = new int[] {2,6,27,2,1,0,2};
 	int[] d = new int[] {1,15,261,1,6,2,7,8,10,2,5};
-        mergeSort(d);
-	//merge(d,0,0,1,1);
-	//merge(d,2,2,3,3);
+	mergeSort(a);
+	mergeSort(b);
+	mergeSort(d);
     }
 }
