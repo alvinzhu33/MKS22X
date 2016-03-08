@@ -223,7 +223,7 @@ public class Sorts{
 	return "6,Zhu,Alvin";
     }
 
-    public static void main(String[]args){
+    /*public static void main(String[]args){
 	int[] a = new int[] {6,5,2,7,2,13,8,31,3,78,4,23,78,32};
 	int[] b = new int[] {2,6,27,2,1,0,2};
 	int[] c = new int[] {1,2,3,4,5,6,11,8};
@@ -233,5 +233,5 @@ public class Sorts{
 	mergesort(c);
 	mergesort(d);
 	System.out.println(name());
-    }
+	}*/
 }
