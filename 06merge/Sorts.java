@@ -110,7 +110,8 @@ public class Sorts{
 
     //----------------------------------------------------------------
     //Merge Sort
-    public static int[] easyMerge(int[]aryA, int[]aryB){
+    
+    /*public static int[] easyMerge(int[]aryA, int[]aryB){
 	int[] sort = new int[aryA.length+aryB.length];
 	int aPlace=0;
 	int bPlace=0;
@@ -135,9 +136,9 @@ public class Sorts{
 	    sortPlace++;
 	}
 	return sort;
-    }
+	}*/
 
-    public static void mergeSort(int[]data){
+    public static void mergesort(int[]data){
 	mergesortHelper(data, 0, data.length);
 	printArray(data);
     }
@@ -210,12 +211,19 @@ public class Sorts{
 	//System.out.println("---------");
     }
 
-    public static void main(String[]args){
+    public static String name(){
+	return "6,Zhu,Alvin";
+    }
+
+    /*public static void main(String[]args){
 	int[] a = new int[] {6,5,2,7,2,13,8,31,3,78,4,23,78,32};
 	int[] b = new int[] {2,6,27,2,1,0,2};
+	int[] c = new int[] {1,2,3,4,5,6,11,8};
 	int[] d = new int[] {1,15,261,1,6,2,7,8,10,2,5};
-	mergeSort(a);
-	mergeSort(b);
-	mergeSort(d);
-    }
+	mergesort(a);
+	mergesort(b);
+	mergesort(c);
+	mergesort(d);
+	System.out.println(name());
+	}*/
 }
