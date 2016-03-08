@@ -140,7 +140,7 @@ public class Sorts{
 
     public static void mergesort(int[]data){
 	mergesortHelper(data, 0, data.length);
-	printArray(data);
+	//printArray(data);
     }
     
     public static void mergesortHelper(int[] data ,int start,int end){
@@ -223,8 +223,8 @@ public class Sorts{
 	return "6,Zhu,Alvin";
     }
 
-    /*public static void main(String[]args){
-	int[] a = new int[] {6,5,2,7,2,13,8,31,3,78,4,23,78,32};
+    public static void main(String[]args){
+	/*int[] a = new int[] {6,5,2,7,2,13,8,31,3,78,4,23,78,32};
 	int[] b = new int[] {2,6,27,2,1,0,2};
 	int[] c = new int[] {1,2,3,4,5,6,11,8};
 	int[] d = new int[] {1,15,261,1,6,2,7,8,10,2,5};
@@ -232,6 +232,14 @@ public class Sorts{
 	mergesort(b);
 	mergesort(c);
 	mergesort(d);
-	System.out.println(name());
-	}*/
+	System.out.println(name());*/
+
+	int[] test = new int[1000];
+	Random rand = new Random(5);
+	for(int i=0; i<1000; i++){
+	    test[i] = rand.nextInt();
+	}
+	int[] test2 = new int[1000];
+	Random rand = new Random(5);
+    }
 }
