@@ -144,7 +144,7 @@ public class Sorts{
     }
     
     public static void mergesortHelper(int[] data ,int start,int end){
-	for(int i=start; i<end; i+=2){
+	/*for(int i=start; i<end; i+=2){
 	    merge(data,i,i,i+1,i+1);
 	}
 	for(int i=start; i<end; i+=4){
@@ -169,6 +169,14 @@ public class Sorts{
 	    for(int i=start; i<end; i+=256){
 		merge(data,i,i+127,i+128,i+255);
 	    }
+	    }*/
+	double p=1.0;
+	while(data.length>Math.pow(2.0,p-1)){
+	    int power = (int)Math.pow(2.0,p);
+	    for(int i=start; i<end; i+=power){
+		merge(data,i,i+(power/2-1), i+(power/2), i+(power-1));
+	    }
+	    p++;
 	}
     } 
     
@@ -215,7 +223,7 @@ public class Sorts{
 	return "6,Zhu,Alvin";
     }
 
-    /*public static void main(String[]args){
+    public static void main(String[]args){
 	int[] a = new int[] {6,5,2,7,2,13,8,31,3,78,4,23,78,32};
 	int[] b = new int[] {2,6,27,2,1,0,2};
 	int[] c = new int[] {1,2,3,4,5,6,11,8};
@@ -225,5 +233,5 @@ public class Sorts{
 	mergesort(c);
 	mergesort(d);
 	System.out.println(name());
-	}*/
+    }
 }
