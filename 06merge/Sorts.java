@@ -2,12 +2,16 @@ import java.util.*;
 
 public class Sorts{
     public static void printArray(int[]data){
-	String show="[ "+data[0];
-	for(int i=1; i<data.length; i++){
-	    show+=", "+data[i];
-	}
-	show+="]";
-	System.out.println(show);
+	if(data.length<1){
+	    System.out.println("[ ]");
+	}else{
+	    String show="[ "+data[0];
+	    for(int i=1; i<data.length; i++){
+		show+=", "+data[i];
+	    }
+	    show+="]";
+	    System.out.println(show);
+      	}
 	//print the array like:  [ 1, 2, 3, 4]
     }
 
@@ -139,7 +143,9 @@ public class Sorts{
 	}*/
 
     public static void mergesort(int[]data){
-	mergesortHelper(data, 0, data.length);
+	if(data.length>0){
+	    mergesortHelper(data, 0, data.length);
+	}
 	//printArray(data);
     }
     
@@ -228,18 +234,50 @@ public class Sorts{
 	int[] b = new int[] {2,6,27,2,1,0,2};
 	int[] c = new int[] {1,2,3,4,5,6,11,8};
 	int[] d = new int[] {1,15,261,1,6,2,7,8,10,2,5};
+	int[] e = new int[] {5,0,3};
 	mergesort(a);
 	mergesort(b);
 	mergesort(c);
 	mergesort(d);
+	mergesort(e);
+	printArray(e);
 	System.out.println(name());*/
 
-	int[] test = new int[1000];
-	Random rand = new Random(5);
-	for(int i=0; i<1000; i++){
-	    test[i] = rand.nextInt();
-	}
-	int[] test2 = new int[1000];
-	Random rand = new Random(5);
+	/*int[] test = new int[100000];
+	fillRandom(test);
+	int[] test2 = new int[100000000];
+	fillRandom(test2);
+
+	mergesort(test);
+	long time = System.currentTimeMillis();
+	System.out.println(time);
+
+	Arrays.sort(test2);
+	System.out.println(System.currentTimeMillis()-time);*/
+
+	//Thanks to Yvonne for this!
+	int[] Atest = {1};
+	int[] Btest = {2,4,8,11,40,172,13,46,-13,4,0};
+	int[] sorted = {1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6};
+	int[] Ctest = {12,26,37,1,6,10,24,88,253,2,7,8,48,67,723,242,146,2};
+	int[] Dtest = {1,73,84,35,32,76,-3};
+	int[] Etest = {76,-3};
+	int[] Ftest = {};
+	//merge(sorted,Atest,Btest);
+	//printArray(sorted);
+	mergesort(Atest);
+	printArray(Atest);
+	mergesort(Btest);
+	printArray(Btest);
+	mergesort(sorted);
+	printArray(sorted);
+	mergesort(Ctest);
+	printArray(Ctest);
+	mergesort(Dtest);
+	printArray(Dtest);
+	mergesort(Etest);
+	printArray(Etest);
+	mergesort(Ftest);
+	printArray(Ftest);
     }
 }
