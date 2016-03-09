@@ -86,11 +86,13 @@ public class Quick{
 	System.out.println(quickselect(b,9));
 	System.out.println(Arrays.toString(b));
 	System.out.println("-----------------");
-	System.out.println(quickselect(c,15));
+	System.out.println(quickselect(c,20));
 	System.out.println(Arrays.toString(c));
 	System.out.println("-----------------");
 	System.out.println(quickselect(d,0));
 	System.out.println(Arrays.toString(d));
 	System.out.println("-----------------");
+
+	
     }
 }
