@@ -69,6 +69,10 @@ public class Quick{
 	}
     }
 
+    public static String name(){
+	return "6,Zhu,Alvin";
+    }
+
     public static void main(String[]args){
 	int[] a = new int[] {1,6,2,2,7,4,6};
 	int[] b = new int[] {-1,-4,1,5,2,6,2,6,2,2,7,4,6,90,20,60};
@@ -85,7 +89,7 @@ public class Quick{
 	System.out.println(quickselect(c,15));
 	System.out.println(Arrays.toString(c));
 	System.out.println("-----------------");
-	System.out.println(quickselect(d,3));
+	System.out.println(quickselect(d,0));
 	System.out.println(Arrays.toString(d));
 	System.out.println("-----------------");
     }
