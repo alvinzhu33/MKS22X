@@ -9,7 +9,7 @@ public class Quick{
     //this allows your quickselect method to decide where to go next.
     private static int partition(int[]data, int left, int right){
 	int k = data[(int)(Math.random()*(right-left+1))+left];
-	System.out.println(k);
+	//System.out.println(k);
 	int[] copy = new int[right-left+1];
 
 	int start=0;
@@ -37,7 +37,7 @@ public class Quick{
 	}
 	
 	//System.out.println(Arrays.toString(copy));
-	System.out.println(Arrays.toString(data));
+	//System.out.println(Arrays.toString(data));
 	return start+left;
     }
     
@@ -45,7 +45,11 @@ public class Quick{
     // when k = 0 return the smallest.
     // 0 <= k < data.length
     public static int quickselect(int[]data, int k){
-	return 1;
+	if(partition(data, 0, data.length-1)==k){
+	    return data[k];
+	}else{
+	    return quickselect(data, k, 0, data.length-1);
+	}
     }
     
     //return the kth smallest value in the given left/right range 
@@ -53,13 +57,36 @@ public class Quick{
     //start by calling the helper as follows:
     // quickselect(data,k,0,data.length-1)
     private static int quickselect(int[]data, int k, int left, int right){
-	return 1;
+	int place = partition(data,left,right);
+	if(place==k){
+	    return data[k];
+	}else{
+	    if(place>k){
+		return quickselect(data, k, left, place);
+	    }else{
+		return quickselect(data, k, place, right);
+	    }
+	}
     }
 
     public static void main(String[]args){
 	int[] a = new int[] {1,6,2,2,7,4,6};
 	int[] b = new int[] {-1,-4,1,5,2,6,2,6,2,2,7,4,6,90,20,60};
-	//partition(a,0,6);
-	System.out.println(partition(b,2,12));
+	int[] c = {1,6,2,7,4,1,2,7,8,3,6,1,2,7,3,1,2,7,9,3,1};
+	int[] d = {216,217,31,37,13,8,2,385,612,3283,424,8423,3};
+	//System.out.println(partition(a,0,6));
+	//System.out.println(partition(b,2,12));
+	System.out.println(quickselect(a,4));
+	System.out.println(Arrays.toString(a));
+	System.out.println("-----------------");
+	System.out.println(quickselect(b,9));
+	System.out.println(Arrays.toString(b));
+	System.out.println("-----------------");
+	System.out.println(quickselect(c,15));
+	System.out.println(Arrays.toString(c));
+	System.out.println("-----------------");
+	System.out.println(quickselect(d,4));
+	System.out.println(Arrays.toString(d));
+	System.out.println("-----------------");
     }
 }
