@@ -85,10 +85,12 @@ public class Quick{
     }
 	
     public static void main(String[]args){
-	int[] a = new int[] {1,6,2,2,7,4,6};
+	/*int[] a = new int[] {1,6,2,2,7,4,6};
 	int[] b = new int[] {-1,-4,1,5,2,6,2,6,2,2,7,4,6,90,20,60};
 	int[] c = {1,6,2,7,4,1,2,7,8,3,6,1,2,7,3,1,2,7,9,3,1};
 	int[] d = {216,217,31,37,13,8,2,385,612,3283,424,8423,3};
+	int[] e = {1,9,4,3,1,4,3,1,9,4,1,1,3};*/
+
 	/*System.out.println(partition(a,0,6));
 	  System.out.println(partition(b,0,b.length-1));*/
 	/*System.out.println(quickselect(a,4));
@@ -103,7 +105,8 @@ public class Quick{
 	System.out.println(quickselect(d,0));
 	System.out.println(Arrays.toString(d));
 	System.out.println("-----------------");*/
-	quickSort(a);
+
+	/*quickSort(a);
 	System.out.println(Arrays.toString(a));
 	quickSort(b);
 	System.out.println(Arrays.toString(b));
@@ -111,5 +114,13 @@ public class Quick{
 	System.out.println(Arrays.toString(c));
 	quickSort(d);
 	System.out.println(Arrays.toString(d));
+	quickSort(e);
+	System.out.println(Arrays.toString(e));*/
+
+	int[] testA = new int[4000000];
+	for(int i=0; i<4000000; i++){
+	    testA[i]=(int)(Math.random()*3)+1;
+	}
+	quickSort(testA);
     }
 }
