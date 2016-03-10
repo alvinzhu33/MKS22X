@@ -8,37 +8,36 @@ public class Quick{
     //return the index of the partition element. 
     //this allows your quickselect method to decide where to go next.
     private static int partition(int[]data, int left, int right){
-	int k = data[(int)(Math.random()*(right-left+1))+left];
-	//System.out.println(k);
-	int[] copy = new int[right-left+1];
+	int random = (int)(Math.random()*(right-left+1))+left;
+	swap(data,random,right);
+	System.out.println(data[right]);
 
-	int start=0;
-	int end=copy.length-1;
-	int place=left;
-	boolean skip = true;
-	while(start<end){
-	    if(data[place]==k && skip){
-		place++;
-		skip=false;
-	    }
-	    if(data[place]>=k){
-		copy[end]=data[place];
-		end--;
+	int from = left;
+	int to = right-1;
+	while(from<to){
+	    if(data[from]<data[right]){
+		from++;
 	    }else{
-		copy[start]=data[place];
-		start++;
+		swap(data,from,to);
+		to--;
 	    }
-	    place++;
 	}
-	copy[start]=k;
 
-	for(int i=left; i-left<copy.length; i++){
-	    data[i]=copy[i-left];
+	if(data[from]<data[right]){
+	    swap(data,from+1,right);
+	    System.out.println(Arrays.toString(data));
+	    return from+1;
+	}else{
+	    swap(data,from,right);
+	    System.out.println(Arrays.toString(data));
+	    return from;
 	}
-	
-	//System.out.println(Arrays.toString(copy));
-	//System.out.println(Arrays.toString(data));
-	return start+left;
+    }
+
+    public static void swap(int[]data, int a, int b){
+	int store = data[a];
+	data[a]=data[b];
+	data[b]=store;
     }
     
     //return the kth smallest value.
@@ -78,9 +77,9 @@ public class Quick{
 	int[] b = new int[] {-1,-4,1,5,2,6,2,6,2,2,7,4,6,90,20,60};
 	int[] c = {1,6,2,7,4,1,2,7,8,3,6,1,2,7,3,1,2,7,9,3,1};
 	int[] d = {216,217,31,37,13,8,2,385,612,3283,424,8423,3};
-	//System.out.println(partition(a,0,6));
-	//System.out.println(partition(b,2,12));
-	System.out.println(quickselect(a,4));
+	System.out.println(partition(a,0,6));
+	System.out.println(partition(b,0,b.length-1));
+	/*System.out.println(quickselect(a,4));
 	System.out.println(Arrays.toString(a));
 	System.out.println("-----------------");
 	System.out.println(quickselect(b,9));
@@ -91,8 +90,6 @@ public class Quick{
 	System.out.println("-----------------");
 	System.out.println(quickselect(d,0));
 	System.out.println(Arrays.toString(d));
-	System.out.println("-----------------");
-
-	
+	System.out.println("-----------------");*/
     }
 }
