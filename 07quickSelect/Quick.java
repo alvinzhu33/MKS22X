@@ -10,7 +10,7 @@ public class Quick{
     private static int partition(int[]data, int left, int right){
 	int random = (int)(Math.random()*(right-left+1))+left;
 	swap(data,random,right);
-	System.out.println(data[right]);
+	//System.out.println(data[right]);
 
 	int from = left;
 	int to = right-1;
@@ -25,11 +25,11 @@ public class Quick{
 
 	if(data[from]<data[right]){
 	    swap(data,from+1,right);
-	    System.out.println(Arrays.toString(data));
+	    //System.out.println(Arrays.toString(data));
 	    return from+1;
 	}else{
 	    swap(data,from,right);
-	    System.out.println(Arrays.toString(data));
+	    //System.out.println(Arrays.toString(data));
 	    return from;
 	}
     }
@@ -69,16 +69,28 @@ public class Quick{
     }
 
     public static String name(){
-	return "6,Zhu,Alvin";
+	return "6,Zhu,Alvin"; //e.g. "7,Kim,Bob"
     }
-
+    
+    public static void quickSort(int[]data){
+	quickSort(data,0,data.length-1);
+    }
+    
+    private static void quickSort(int[]data,int left,int right){
+	if(right-left+1>1){
+	    int wall=partition(data,left,right);
+	    quickSort(data,left,wall);
+	    quickSort(data,wall+1,right);
+	}
+    }
+	
     public static void main(String[]args){
 	int[] a = new int[] {1,6,2,2,7,4,6};
 	int[] b = new int[] {-1,-4,1,5,2,6,2,6,2,2,7,4,6,90,20,60};
 	int[] c = {1,6,2,7,4,1,2,7,8,3,6,1,2,7,3,1,2,7,9,3,1};
 	int[] d = {216,217,31,37,13,8,2,385,612,3283,424,8423,3};
-	System.out.println(partition(a,0,6));
-	System.out.println(partition(b,0,b.length-1));
+	/*System.out.println(partition(a,0,6));
+	  System.out.println(partition(b,0,b.length-1));*/
 	/*System.out.println(quickselect(a,4));
 	System.out.println(Arrays.toString(a));
 	System.out.println("-----------------");
@@ -91,5 +103,13 @@ public class Quick{
 	System.out.println(quickselect(d,0));
 	System.out.println(Arrays.toString(d));
 	System.out.println("-----------------");*/
+	quickSort(a);
+	System.out.println(Arrays.toString(a));
+	quickSort(b);
+	System.out.println(Arrays.toString(b));
+	quickSort(c);
+	System.out.println(Arrays.toString(c));
+	quickSort(d);
+	System.out.println(Arrays.toString(d));
     }
 }
