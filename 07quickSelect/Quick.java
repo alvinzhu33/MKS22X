@@ -70,7 +70,7 @@ public class Quick{
 	data[b]=store;
     }
 
-    private static int partition(int[]data, int left, int right){
+    private static int[] partition(int[]data, int left, int right){
       int random = (int)(Math.random()*(right-left+1))+left;
       swap(data,random,right);
       System.out.println(data[right]);
@@ -104,19 +104,19 @@ public class Quick{
          from++;
          swap(data,from,right);
          System.out.println(Arrays.toString(data));
-         returning[0]= from+1;
       }else{
          swap(data,from,right);
          System.out.println(Arrays.toString(data));
-         returning[0]= from;
       }
+      returning[0]= from;
 
       for(int i=0; i<pivotCount-1; i++){
          from++;
          swap(data,right-i-1,from);
       }
       System.out.println(Arrays.toString(data));
-      return 1;
+      returning[1]=from+pivotCount-1;
+      return returning;
    }
 
     public static String name(){
@@ -130,11 +130,11 @@ public class Quick{
 	int[] d = {216,217,31,37,13,8,2,385,612,3283,424,8423,3};
 	int[] e = {1,9,4,3,1,4,3,1,9,4,1,1,3};
 
-	System.out.println(partition(a,0,a.length-1));
-	System.out.println(partition(b,0,b.length-1));
-	System.out.println(partition(c,0,c.length-1));
-	System.out.println(partition(d,0,d.length-1));
-	System.out.println(partition(e,0,e.length-1));
+	System.out.println(Arrays.toString(partition(a,0,a.length-1)));
+	System.out.println(Arrays.toString(partition(b,0,b.length-1)));
+	System.out.println(Arrays.toString(partition(c,0,c.length-1)));
+	System.out.println(Arrays.toString(partition(d,0,d.length-1)));
+	System.out.println(Arrays.toString(partition(e,0,e.length-1)));
 	/*System.out.println(quickselect(a,4));
 	System.out.println(Arrays.toString(a));
 	System.out.println("-----------------");
