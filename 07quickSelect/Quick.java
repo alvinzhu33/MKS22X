@@ -71,48 +71,53 @@ public class Quick{
     }
 
     private static int partition(int[]data, int left, int right){
-	int random = (int)(Math.random()*(right-left+1))+left;
-	swap(data,random,right);
-	System.out.println(data[right]);
+      int random = (int)(Math.random()*(right-left+1))+left;
+      swap(data,random,right);
+      System.out.println(data[right]);
 
-	int pivotCount = 0;
-	for(int i=0; i<=right-pivotCount; i++){
-	    if(data[i]==data[right]){
-		pivotCount++;
-		swap(data,i,right-pivotCount);
-	    }
-	}
-	pivotCount++;
+      int pivotCount = 1;
+      for(int i=0; i<=right-pivotCount; i++){
+         if(data[i]==data[right]){
+            if(data[i]!=data[right-pivotCount]){
+               swap(data,i,right-pivotCount);
+               pivotCount++;
+            }else{
+               i--;
+               pivotCount++;
+            }
+         }
+      }
 
-	int from = left;
-	int to = right-pivotCount-1;
-	while(from<to){
-	    if(data[from]<data[right]){
-		from++;
-	    }else{
-		swap(data,from,to);
-		to--;
-	    }
-	}
+      int from = left;
+      int to = right-pivotCount;
+      while(from<to){
+         if(data[from]<data[right]){
+            from++;
+         }else{
+            swap(data,from,to);
+            to--;
+         }
+      }
 
-	int[] returning = new int[2];
-	if(data[from]<data[right]){
-	    swap(data,from+1,right);
-	    System.out.println(Arrays.toString(data));
-	    returning[0]= from+1;
-	}else{
-	    swap(data,from,right);
-	    System.out.println(Arrays.toString(data));
-	    returning[0]= from;
-	}
-	
-	for(int i=0; i<pivotCount-2; i++){
-	    from++;
-	    swap(data,right-i-1,from);
-	}
-	System.out.println(Arrays.toString(data));
-	return 1;
-    }
+      int[] returning = new int[2];
+      if(data[from]<data[right]){
+         from++;
+         swap(data,from,right);
+         System.out.println(Arrays.toString(data));
+         returning[0]= from+1;
+      }else{
+         swap(data,from,right);
+         System.out.println(Arrays.toString(data));
+         returning[0]= from;
+      }
+
+      for(int i=0; i<pivotCount-1; i++){
+         from++;
+         swap(data,right-i-1,from);
+      }
+      System.out.println(Arrays.toString(data));
+      return 1;
+   }
 
     public static String name(){
 	return "6,Zhu,Alvin"; //e.g. "7,Kim,Bob"
