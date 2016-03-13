@@ -212,11 +212,11 @@ public class Quick{
     }
     
     public static void main(String[]args){
-	int[] a = new int[] {1,6,2,2,7,4,6};
+	/*int[] a = new int[] {1,6,2,2,7,4,6};
 	int[] b = new int[] {-1,-4,1,5,2,6,2,6,2,2,7,4,6,90,20,60};
 	int[] c = {1,6,2,7,4,1,2,7,8,3,6,1,2,7,3,1,2,7,9,3,1};
 	int[] d = {216,217,31,37,13,8,2,385,612,3283,424,8423,3};
-	int[] e = {1,9,4,3,1,4,3,1,9,4,1,1,3};
+	int[] e = {1,9,4,3,1,4,3,1,9,4,1,1,3};*/
 
 	//System.out.println(Arrays.toString(partition(a,0,a.length-1)));
 	//System.out.println(Arrays.toString(a));
@@ -225,7 +225,7 @@ public class Quick{
 	//System.out.println(Arrays.toString(partition(d,0,d.length-1)));
 	//System.out.println(Arrays.toString(partition(e,0,e.length-1)));
 
-	quickSort(a);
+	/*quickSort(a);
 	System.out.println("---");
 	System.out.println(Arrays.toString(a));
 	System.out.println("-----------------");
@@ -244,9 +244,9 @@ public class Quick{
 	quickSort(e);
 	System.out.println("---");
 	System.out.println(Arrays.toString(e));
-	System.out.println("-----------------");
+	System.out.println("-----------------");*/
 
-	/*int[] d = new int [4000000];
+	int[] d = new int [4000000];
 	int[] c = new int [d.length];
 
 	for(int i = 0; i < d.length; i++){
@@ -256,6 +256,6 @@ public class Quick{
 	System.out.println("now sorting");
 	quickSort(d); //or even your old quicksort!!!
 	Arrays.sort(c);
-	System.out.println("Done: Sorted="+Arrays.equals(d,c));*/
+	System.out.println("Done: Sorted="+Arrays.equals(d,c));
     }
 }
