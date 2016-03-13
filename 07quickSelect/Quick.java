@@ -73,7 +73,7 @@ public class Quick{
     private static int[] partition(int[]data, int left, int right){
       int random = (int)(Math.random()*(right-left+1))+left;
       swap(data,random,right);
-      System.out.println(data[right]);
+      //System.out.println(data[right]);
 
       int pivotCount = 1;
       for(int i=0; i<=right-pivotCount; i++){
@@ -103,22 +103,41 @@ public class Quick{
       if(data[from]<data[right]){
          from++;
          swap(data,from,right);
-         System.out.println(Arrays.toString(data));
+         //System.out.println(Arrays.toString(data));
       }else{
          swap(data,from,right);
-         System.out.println(Arrays.toString(data));
+         //System.out.println(Arrays.toString(data));
       }
       returning[0]= from;
 
+      int place=from;
       for(int i=0; i<pivotCount-1; i++){
-         from++;
-         swap(data,right-i-1,from);
+         place++;
+         swap(data,right-i-1,place);
       }
-      System.out.println(Arrays.toString(data));
       returning[1]=from+pivotCount-1;
+
+      //System.out.println(Arrays.toString(data));
       return returning;
    }
 
+    public static void quickSort(int[]data){
+	quickSort(data,0,data.length-1);
+    }
+    
+    private static void quickSort(int[]data,int left,int right){
+	if(right-left+1>1){
+	    int to=partition(data,left,right)[0]-1;
+	    int from=partition(data,left,right)[1]+1;
+
+	    System.out.println(to);
+	    quickSort(data,left,to);
+
+	    System.out.println(from);
+	    quickSort(data,from,right);
+	}
+    }
+    
     public static String name(){
 	return "6,Zhu,Alvin"; //e.g. "7,Kim,Bob"
     }
@@ -130,22 +149,25 @@ public class Quick{
 	int[] d = {216,217,31,37,13,8,2,385,612,3283,424,8423,3};
 	int[] e = {1,9,4,3,1,4,3,1,9,4,1,1,3};
 
-	System.out.println(Arrays.toString(partition(a,0,a.length-1)));
+	/*System.out.println(Arrays.toString(partition(a,0,a.length-1)));
 	System.out.println(Arrays.toString(partition(b,0,b.length-1)));
 	System.out.println(Arrays.toString(partition(c,0,c.length-1)));
 	System.out.println(Arrays.toString(partition(d,0,d.length-1)));
-	System.out.println(Arrays.toString(partition(e,0,e.length-1)));
-	/*System.out.println(quickselect(a,4));
+	System.out.println(Arrays.toString(partition(e,0,e.length-1)));*/
+	quickSort(a);
 	System.out.println(Arrays.toString(a));
 	System.out.println("-----------------");
-	System.out.println(quickselect(b,9));
+	quickSort(b);
 	System.out.println(Arrays.toString(b));
 	System.out.println("-----------------");
-	System.out.println(quickselect(c,20));
+	quickSort(c);
 	System.out.println(Arrays.toString(c));
 	System.out.println("-----------------");
-	System.out.println(quickselect(d,0));
+	quickSort(d);
 	System.out.println(Arrays.toString(d));
-	System.out.println("-----------------");*/
+	System.out.println("-----------------");
+	quickSort(e);
+	System.out.println(Arrays.toString(e));
+	System.out.println("-----------------");
     }
 }
