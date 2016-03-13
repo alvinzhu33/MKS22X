@@ -119,40 +119,6 @@ public class Quick{
 
       //System.out.println(Arrays.toString(data));
       return returning;
-
-	/*int[] copy = new int[data.length];
-	int compare = data[(int)(Math.random()*(right-left+1))+left];
-	//System.out.println(compare);
-
-	int from = left;
-	int to = right;
-	int pivotCounter = 0;
-	for(int i=from; i<copy.length && to>0; i++){
-	    if(data[i]<compare){
-		copy[from]=data[i];
-		from++;
-	    }
-	    if(data[i]==compare){
-		pivotCounter++;
-	    }
-	    if(data[i]>compare){
-		copy[to]=data[i];
-		to--;
-	    }
-	}
-
-	int[] answer = new int[2];
-	answer[0]=from;
-	for(int i=0; i<pivotCounter; i++){
-	    copy[from+i]=compare;
-	    answer[1]=from+i;
-	}
-
-	for(int i=left; i<=right; i++){
-	    data[i]=copy[i];
-	}
-	System.out.println(Arrays.toString(data));
-	return answer;*/
    }
 
     public static void quickSort(int[]data){
@@ -160,10 +126,10 @@ public class Quick{
     }
     
     private static void quickSort(int[]data,int left,int right){
-	if(right-left+1>1){
+	if(right-left+1>1 && left>=0 && right<data.length){
 	    int[] answers=partition(data,left,right);
-	    int to=answers[0];
-	    int from=answers[1];
+	    int to=answers[0]-1;
+	    int from=answers[1]+1;
 	    
 	    quickSort(data,left,to);
 	    quickSort(data,from,right);
@@ -188,7 +154,7 @@ public class Quick{
 	System.out.println(Arrays.toString(partition(e,0,e.length-1)));*/
 	quickSort(a);
 	System.out.println(Arrays.toString(a));
-	System.out.println("-----------------");/*
+	System.out.println("-----------------");
 	quickSort(b);
 	System.out.println(Arrays.toString(b));
 	System.out.println("-----------------");
@@ -200,6 +166,6 @@ public class Quick{
 	System.out.println("-----------------");
 	quickSort(e);
 	System.out.println(Arrays.toString(e));
-	System.out.println("-----------------");*/
+	System.out.println("-----------------");
     }
 }
