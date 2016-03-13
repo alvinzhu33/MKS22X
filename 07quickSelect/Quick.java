@@ -71,90 +71,6 @@ public class Quick{
     }
 
     private static int[] partition(int[]data, int left, int right){
-	/*int random = (int)(Math.random()*(right-left+1))+left;
-      swap(data,random,right);
-      //System.out.println(data[right]);
-
-      int pivotCount = 1;
-      for(int i=0; i<=right-pivotCount; i++){
-         if(data[i]==data[right]){
-            if(data[i]!=data[right-pivotCount]){
-               swap(data,i,right-pivotCount);
-               pivotCount++;
-            }else{
-               i--;
-               pivotCount++;
-            }
-         }
-      }
-
-      int from = left;
-      int to = right-pivotCount;
-      while(from<to){
-         if(data[from]<data[right]){
-            from++;
-         }else{
-            swap(data,from,to);
-            to--;
-         }
-      }
-
-      int[] returning = new int[2];
-      if(data[from]<data[right]){
-         from++;
-         swap(data,from,right);
-         //System.out.println(Arrays.toString(data));
-      }else{
-         swap(data,from,right);
-         //System.out.println(Arrays.toString(data));
-      }
-      returning[0]= from;
-
-      int place=from;
-      for(int i=0; i<pivotCount-1; i++){
-         place++;
-         swap(data,right-i-1,place);
-      }
-      returning[1]=from+pivotCount-1;
-
-      //System.out.println(Arrays.toString(data));
-      return returning;*/
-
-	/*int[] copy = new int[right-left+1];
-      int compare = data[(int)(Math.random()*(right-left+1))+left];
-      //System.out.println(compare);
-
-      int from = 0;
-      int to = right-left;
-      int pivotCounter = 0;
-      for(int i=0; i<right-left+1; i++){
-         if(data[left+i]<compare){
-            copy[from]=data[left+i];
-            from++;
-         }
-         if(data[left+i]==compare){
-            pivotCounter++;
-         }
-         if(data[left+i]>compare){
-            copy[to]=data[left+i];
-            to--;
-         }
-      }
-      
-      int[] answer = new int[2];
-      answer[0]=from;
-      for(int i=0; i<pivotCounter; i++){
-	  copy[from+i]=compare;
-         answer[1]=from+i;
-      }
-      
-      for(int i=left; i<=right; i++){
-	  data[i]=copy[i-left];
-      }
-
-      System.out.println(Arrays.toString(data));
-      return answer;*/
-
 	int random = (int)(Math.random()*(right-left+1))+left;
 	swap(data,random,right);
 	//System.out.println(data[right]);
@@ -213,10 +129,10 @@ public class Quick{
     
     public static void main(String[]args){
 	/*int[] a = new int[] {1,6,2,2,7,4,6};
-	int[] b = new int[] {-1,-4,1,5,2,6,2,6,2,2,7,4,6,90,20,60};
-	int[] c = {1,6,2,7,4,1,2,7,8,3,6,1,2,7,3,1,2,7,9,3,1};
-	int[] d = {216,217,31,37,13,8,2,385,612,3283,424,8423,3};
-	int[] e = {1,9,4,3,1,4,3,1,9,4,1,1,3};*/
+	  int[] b = new int[] {-1,-4,1,5,2,6,2,6,2,2,7,4,6,90,20,60};
+	  int[] c = {1,6,2,7,4,1,2,7,8,3,6,1,2,7,3,1,2,7,9,3,1};
+	  int[] d = {216,217,31,37,13,8,2,385,612,3283,424,8423,3};
+	  int[] e = {1,9,4,3,1,4,3,1,9,4,1,1,3};*/
 
 	//System.out.println(Arrays.toString(partition(a,0,a.length-1)));
 	//System.out.println(Arrays.toString(a));
@@ -245,17 +161,5 @@ public class Quick{
 	System.out.println("---");
 	System.out.println(Arrays.toString(e));
 	System.out.println("-----------------");*/
-
-	int[] d = new int [4000000];
-	int[] c = new int [d.length];
-
-	for(int i = 0; i < d.length; i++){
-	    d[i]= (int)(Math.random()*Integer.MAX_VALUE);
-	    c[i]= d[i];
-	}
-	System.out.println("now sorting");
-	quickSort(d); //or even your old quicksort!!!
-	Arrays.sort(c);
-	System.out.println("Done: Sorted="+Arrays.equals(d,c));
     }
 }
