@@ -1,51 +1,73 @@
-public class myLinkedList{
+public class MyLinkedList{
     public LNode start;
     public int size;
 
+    public MyLinkedList(){
+	size=0;
+	LNode start = new LNode();
+    }
+
     //get the value of the element at the specified index (0 based)
-    int get(int index){
-	
+    public int get(int index){
+	return 1;
     }
     
     //change the value of the element at the specified index to the newValue, return the old value
-    int set(int index,int newValue){
-	
+    public int set(int index,int newValue){
+	return 1;
     }
 
     //return the number of elements in the list
-    int size(){
-	
+    public int size(){
+	return 1;
     }
 
     //remove the element at the specified index, returns the value removed
-    int remove(int index){
-	
+    public int remove(int index){
+	return 1;
     }
 
     //insert a new elmeent at the specified index, 0 at the front, size() at the end.
-    boolean add(int index, int value){
-	
+    public boolean add(int index, int value){
+	return false;
     }
 
     //adds to end
-    boolean add(int value){
-	
+    public boolean add(int value){
+	LNode current = start;
+	if(current.getNext()==null){
+	    current.set(value);
+	}
+	return false;
     }
 
     //returns the index of the 1st occurrence of the value in the linked list, -1 if not found.
-    int indexOf(int value){
-	
+    public int indexOf(int value){
+	return 1;
     }
 
     //returns a list formatted like: [ v1, v2, v3, ... vn-1, vn ]
-    void toString(){
-	
+    public String toString(){
+	String copy="[";
+
+	LNode current = start;
+	while(current.getNext()!=null){
+	    copy += " "+current.get();
+	}
+	copy += "]";
+
+	return copy;
+	//System.out.println("hi");
     }
 
     public class LNode{
 	public int data;
 	public LNode next;
-
+	
+	public LNode(int car){
+	    data=car;
+	}
+	
 	public LNode(int car, LNode cdr){
 	    data = car;
 	    next = cdr;
@@ -56,15 +78,17 @@ public class myLinkedList{
 	}
 
 	public LNode getNext(){
-	    return cdr;
+	    return next;
 	}
 
 	public boolean set(int value){
 	    data = value;
+	    return false;
 	}
 
 	public boolean setNext(LNode cdr){
 	    next = cdr;
+	    return false;
 	}
     }
 }
