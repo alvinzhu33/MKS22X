@@ -2,14 +2,17 @@ public class MyLinkedList{
     public LNode start;
     public int size;
 
-    /*public MyLinkedList(){
-	size=0;
-	start = new LNode();
-	}*/
-
     //get the value of the element at the specified index (0 based)
     public int get(int index){
-	return 1;
+	if(index<0 || index>size-1){
+	    throw new IllegalArgumentException();
+	}
+	
+	LNode copy = start;
+	for(int i=0; i<index; i++){
+	    copy = copy.getNext();
+	}
+	return copy.get();
     }
 
     //change the value of the element at the specified index to the newValue, return the old value
@@ -19,7 +22,7 @@ public class MyLinkedList{
 
     //return the number of elements in the list
     public int size(){
-	return 1;
+	return size;
     }
 
     //remove the element at the specified index, returns the value removed
@@ -100,5 +103,35 @@ public class MyLinkedList{
 	public void setNext(LNode cdr){
 	    next = cdr;
 	}
+    }
+
+    public static void main(String[]args){
+	MyLinkedList m = new MyLinkedList();
+	/*MyLinkedList l1 = new MyLinkedList();
+	l1.add(54);
+	l1.add(54);
+	l1.add(54);
+	System.out.println(l1);
+	System.out.println(l1.size());
+	System.out.println(l1.get(0));
+	System.out.println(l1.get(1));
+	System.out.println(l1.get(2));
+	System.out.println(l1.get(3));*/
+
+	int i = 0;
+	while(i < 100){
+	    m.add(i);
+	    i++;
+	}
+	/*m.add(54);
+	m.add(-10);
+	m.add(47);*/
+	System.out.println(m);
+	System.out.println(m.size());
+	System.out.println(m.get(5));
+	System.out.println(m.get(20));
+	System.out.println(m.get(79));
+	System.out.println(m.get(99));
+	System.out.println(m.get(100));
     }
 }
