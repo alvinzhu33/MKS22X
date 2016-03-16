@@ -127,7 +127,15 @@ public class MyLinkedList{
 
     //returns the index of the 1st occurrence of the value in the linked list, -1 if not found.
     public int indexOf(int value){
-	return 1;
+	LNode copy = start;
+	for(int i=0; i<size; i++){
+	    if(copy.get()==value){
+		return i;
+	    }else{
+		copy = copy.getNext();
+	    }
+	}
+	return -1;
     }
 
     //returns a list formatted like: [ v1, v2, v3, ... vn-1, vn ]
@@ -212,6 +220,9 @@ public class MyLinkedList{
 	m.add(20,20);
 	m.add(97,97);
 	System.out.println(m);
+	System.out.println(m.indexOf(0));
+	System.out.println(m.indexOf(50));
+	System.out.println(m.indexOf(73));
 	//System.out.println(m.get(5));
 	//System.out.println(m.get(20));
 	//System.out.println(m.get(79));
