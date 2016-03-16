@@ -2,10 +2,10 @@ public class MyLinkedList{
     public LNode start;
     public int size;
 
-    public MyLinkedList(){
+    /*public MyLinkedList(){
 	size=0;
 	start = new LNode();
-    }
+	}*/
 
     //get the value of the element at the specified index (0 based)
     public int get(int index){
@@ -32,17 +32,17 @@ public class MyLinkedList{
 	return false;
     }
 
-    //adds to end
     public boolean add(int value){
-	LNode current = start;
-	while(current.getNext()!=null){
-	    current = current.getNext();
+	if(start==null){
+	    start = new LNode(value);
+	}else{
+	    LNode next = start;
+	    while(next.getNext()!=null){
+		next = next.getNext();
+	    }
+	    next.setNext(new LNode(value));
 	}
-	current.set(value);
-
-	LNode next = new LNode();
 	size++;
-	current.setNext(next);
 	return true;
     }
 
@@ -53,13 +53,12 @@ public class MyLinkedList{
 
     //returns a list formatted like: [ v1, v2, v3, ... vn-1, vn ]
     public String toString(){
-	String copy="[ "+start.get();
-
+	String copy="[ ";
+	if(size!=0){
+	    copy+=start.get();
+	}
+	
 	LNode current = start;
-	/*while(current.getNext()!=null){
-	  current = current.getNext();
-	  copy += ", "+current.get();
-	  }*/
 	for(int i=0; i<size-1; i++){
 	    current = current.getNext();
 	    copy += ", "+current.get();
@@ -67,10 +66,9 @@ public class MyLinkedList{
 	copy += "]";
 
 	return copy;
-	//System.out.println("hi");
     }
 
-    public class LNode{
+    private class LNode{
 	public int data;
 	public LNode next;
 
@@ -78,9 +76,9 @@ public class MyLinkedList{
 	    data=0;
 	}
 
-	/*public LNode(int car){
-	  data=car;
-	  }*/
+	public LNode(int car){
+	    data=car;
+	}
 
 	public LNode(int car, LNode cdr){
 	    data = car;
@@ -95,14 +93,12 @@ public class MyLinkedList{
 	    return next;
 	}
 
-	public boolean set(int value){
+	public void set(int value){
 	    data = value;
-	    return true;
 	}
 
-	public boolean setNext(LNode cdr){
+	public void setNext(LNode cdr){
 	    next = cdr;
-	    return true;
 	}
     }
 }
