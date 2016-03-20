@@ -1,5 +1,6 @@
 public class MyLinkedList{
     public LNode start;
+    public LNode end;
     public int size;
 
     //get the value of the element at the specified index (0 based)
@@ -7,7 +8,7 @@ public class MyLinkedList{
 	if(index<0 || index>size-1){
 	    throw new IllegalArgumentException();
 	}
-	
+
 	LNode copy = start;
 	for(int i=0; i<index; i++){
 	    copy = copy.getNext();
@@ -20,7 +21,7 @@ public class MyLinkedList{
 	if(index<0 || index>size-1){
 	    throw new IllegalArgumentException();
 	}
-	
+
 	LNode copy = start;
 	for(int i=0; i<index; i++){
 	    copy = copy.getNext();
@@ -46,6 +47,9 @@ public class MyLinkedList{
 	if(index==0){
 	    ans = start.get();
 	    start = start.getNext();
+	    if(index == size-1){
+		end = start;
+	    }
 	}else{
 	    LNode copy = start;
 	    for(int i=0; i<index-1; i++){
@@ -55,53 +59,30 @@ public class MyLinkedList{
 	    ans = after.get();
 	    after = after.getNext();
 	    copy.setNext(after);
+	    if(index == size-1){
+		end = copy;
+	    }
 	}
 	size--;
-	
+
 	return ans;
     }
 
-    
+
     public boolean add(int value){
 	if(start==null){
 	    start = new LNode(value);
+	    end = start;
 	}else{
-	    LNode next = start;
-	    while(next.getNext()!=null){
-		next = next.getNext();
-	    }
-	    next.setNext(new LNode(value));
+	    end.setNext(new LNode(value));
+	    end = end.getNext();
 	}
 	size++;
+
 	return true;
     }
 
-    public boolean add(int index, int value){
-	/*if(index<0 || index>size){
-	//throw new IllegalArgumentException();
-	return false;
-	}
-
-	if(index==0){
-	LNode adding = new LNode(value);
-	adding.setNext(start);
-	start = adding;
-	}else{
-	if(index==size+1){
-	add(value);
-	}else{
-	LNode copy = start;
-	for(int i=0; i<index-1; i++){
-	copy = copy.getNext();
-	}
-	LNode adding = new LNode(value);
-	LNode shift = copy.getNext();
-	adding.setNext(shift);
-	copy.setNext(adding);
-	}
-	}
-	return true;*/
-	
+    public boolean add(int index, int value){	
 	if(index<0 || index>size){
 	    //throw new IllegalArgumentException();
 	    return false;
@@ -111,6 +92,9 @@ public class MyLinkedList{
 	    LNode adding = new LNode(value);
 	    adding.setNext(start);
 	    start = adding;
+	    if(start==null){
+		end = adding;
+	    }
 	}else{
 	    LNode copy = start;
 	    for(int i=0; i<index-1; i++){
@@ -120,8 +104,12 @@ public class MyLinkedList{
 	    LNode shift = copy.getNext();
 	    adding.setNext(shift);
 	    copy.setNext(adding);
+	    if(index == size){
+		end = copy.getNext();
+	    }
 	}
 	size++;
+
 	return true;
     }
 
@@ -144,7 +132,7 @@ public class MyLinkedList{
 	if(size!=0){
 	    copy+=start.get();
 	}
-	
+
 	LNode current = start;
 	for(int i=0; i<size-1; i++){
 	    current = current.getNext();
@@ -192,26 +180,21 @@ public class MyLinkedList{
     public static void main(String[]args){
 	MyLinkedList m = new MyLinkedList();
 	/*MyLinkedList l1 = new MyLinkedList();
-	l1.add(54);
-	l1.add(54);
-	l1.add(54);
-	System.out.println(l1);
-	System.out.println(l1.size());
-	System.out.println(l1.get(0));
-	System.out.println(l1.get(1));
-	System.out.println(l1.get(2));
-	System.out.println(l1.get(3));*/
+	  l1.add(54);
+	  l1.add(54);
+	  l1.add(54);
+	  System.out.println(l1);
+	  System.out.println(l1.size());
+	  System.out.println(l1.get(0));
+	  System.out.println(l1.get(1));
+	  System.out.println(l1.get(2));
+	  System.out.println(l1.get(3));*/
 
 	int i = 0;
 	while(i < 100){
 	    m.add(i);
 	    i++;
 	}
-	/*m.add(54);
-	m.add(-10);
-	m.add(47);*/
-	//m.set(20,120);
-	//m.set(0,100);
 	m.remove(97);
 	m.remove(20);
 	m.remove(0);
@@ -220,11 +203,12 @@ public class MyLinkedList{
 	m.add(20,20);
 	m.add(97,97);
 	System.out.println(m);
-	System.out.println(m.indexOf(0));
+	m.add(100);
+	m.add(101);
+	m.add(102);
+	System.out.println(m);
+	/*System.out.println(m.indexOf(0));
 	System.out.println(m.indexOf(50));
-	System.out.println(m.indexOf(73));
-	//System.out.println(m.get(5));
-	//System.out.println(m.get(20));
-	//System.out.println(m.get(79));
+	System.out.println(m.indexOf(73));*/
     }
 }
