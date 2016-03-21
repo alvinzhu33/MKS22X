@@ -1,10 +1,10 @@
-public class MyLinkedList{
+public class MyLinkedList<T>{
     public LNode start;
     public LNode end;
     public int size;
 
     //get the value of the element at the specified index (0 based)
-    public int get(int index){
+    public T get(int index){
 	if(index<0 || index>size-1){
 	    throw new IllegalArgumentException();
 	}
@@ -17,7 +17,7 @@ public class MyLinkedList{
     }
 
     //change the value of the element at the specified index to the newValue, return the old value
-    public int set(int index,int newValue){
+    public T set(int index,T newValue){
 	if(index<0 || index>size-1){
 	    throw new IllegalArgumentException();
 	}
@@ -27,7 +27,7 @@ public class MyLinkedList{
 	    copy = copy.getNext();
 	}
 
-	int ans = copy.get();
+	T ans = copy.get();
 	copy.set(newValue);
 	return ans;
     }
@@ -38,12 +38,12 @@ public class MyLinkedList{
     }
 
     //remove the element at the specified index, returns the value removed
-    public int remove(int index){
+    public T remove(int index){
 	if(index<0 || index>size-1){
 	    throw new IllegalArgumentException();
 	}
 
-	int ans = 0;
+	T ans = start.get();
 	if(index==0){
 	    ans = start.get();
 	    start = start.getNext();
@@ -69,7 +69,7 @@ public class MyLinkedList{
     }
 
 
-    public boolean add(int value){
+    public boolean add(T value){
 	if(start==null){
 	    start = new LNode(value);
 	    end = start;
@@ -82,7 +82,7 @@ public class MyLinkedList{
 	return true;
     }
 
-    public boolean add(int index, int value){	
+    public boolean add(int index, T value){	
 	if(index<0 || index>size){
 	    //throw new IllegalArgumentException();
 	    return false;
@@ -119,7 +119,7 @@ public class MyLinkedList{
     }
 
     //returns the index of the 1st occurrence of the value in the linked list, -1 if not found.
-    public int indexOf(int value){
+    /*public int indexOf(int value){
 	LNode copy = start;
 	for(int i=0; i<size; i++){
 	    if(copy.get()==value){
@@ -129,7 +129,7 @@ public class MyLinkedList{
 	    }
 	}
 	return -1;
-    }
+	}*/
 
     //returns a list formatted like: [ v1, v2, v3, ... vn-1, vn ]
     public String toString(){
@@ -149,23 +149,23 @@ public class MyLinkedList{
     }
 
     private class LNode{
-	public int data;
+	public T data;
 	public LNode next;
 
-	public LNode(){
+	/*public LNode(){
 	    data=0;
-	}
+	    }*/
 
-	public LNode(int car){
+	public LNode(T car){
 	    data=car;
 	}
 
-	public LNode(int car, LNode cdr){
+	/*public LNode(int car, LNode cdr){
 	    data = car;
 	    next = cdr;
-	}
+	    }*/
 
-	public int get(){
+	public T get(){
 	    return data;
 	}
 
@@ -173,8 +173,8 @@ public class MyLinkedList{
 	    return next;
 	}
 
-	public void set(int value){
-	    data = value;
+	public void set(T value){
+	    data = data;
 	}
 
 	public void setNext(LNode cdr){
@@ -183,7 +183,7 @@ public class MyLinkedList{
     }
 
     public static void main(String[]args){
-	MyLinkedList m = new MyLinkedList();
+	MyLinkedList<Integer> m = new MyLinkedList<Integer>();
 	/*MyLinkedList l1 = new MyLinkedList();
 	  l1.add(54);
 	  l1.add(54);
