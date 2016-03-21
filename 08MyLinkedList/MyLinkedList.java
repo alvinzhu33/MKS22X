@@ -88,27 +88,32 @@ public class MyLinkedList{
 	    return false;
 	}
 
-	if(index==0){
-	    LNode adding = new LNode(value);
-	    adding.setNext(start);
-	    start = adding;
-	    if(start==null){
-		end = adding;
-	    }
-	}else{
-	    LNode copy = start;
-	    for(int i=0; i<index-1; i++){
-		copy = copy.getNext();
-	    }
-	    LNode adding = new LNode(value);
-	    LNode shift = copy.getNext();
-	    adding.setNext(shift);
-	    copy.setNext(adding);
-	    if(index == size){
-		end = copy.getNext();
-	    }
+	if(index==size){
+	    add(value);
 	}
-	size++;
+	else{ 
+	    if(index==0){
+		LNode adding = new LNode(value);
+		adding.setNext(start);
+		start = adding;
+		if(start==null){
+		    end = adding;
+		}
+	    }else{
+		LNode copy = start;
+		for(int i=0; i<index-1; i++){
+		    copy = copy.getNext();
+		}
+		LNode adding = new LNode(value);
+		LNode shift = copy.getNext();
+		adding.setNext(shift);
+		copy.setNext(adding);
+		if(index == size){
+		    end = copy.getNext();
+		}
+	    }
+	    size++;
+	}
 
 	return true;
     }
@@ -208,7 +213,7 @@ public class MyLinkedList{
 	m.add(102);
 	System.out.println(m);
 	/*System.out.println(m.indexOf(0));
-	System.out.println(m.indexOf(50));
-	System.out.println(m.indexOf(73));*/
+	  System.out.println(m.indexOf(50));
+	  System.out.println(m.indexOf(73));*/
     }
 }
