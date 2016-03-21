@@ -120,16 +120,16 @@ public class MyLinkedList<T>{
 
     //returns the index of the 1st occurrence of the value in the linked list, -1 if not found.
     /*public int indexOf(int value){
-	LNode copy = start;
-	for(int i=0; i<size; i++){
-	    if(copy.get()==value){
-		return i;
-	    }else{
-		copy = copy.getNext();
-	    }
-	}
-	return -1;
-	}*/
+      LNode copy = start;
+      for(int i=0; i<size; i++){
+      if(copy.get()==value){
+      return i;
+      }else{
+      copy = copy.getNext();
+      }
+      }
+      return -1;
+      }*/
 
     //returns a list formatted like: [ v1, v2, v3, ... vn-1, vn ]
     public String toString(){
@@ -153,17 +153,17 @@ public class MyLinkedList<T>{
 	public LNode next;
 
 	/*public LNode(){
-	    data=0;
-	    }*/
+	  data=0;
+	  }*/
 
 	public LNode(T car){
 	    data=car;
 	}
 
 	/*public LNode(int car, LNode cdr){
-	    data = car;
-	    next = cdr;
-	    }*/
+	  data = car;
+	  next = cdr;
+	  }*/
 
 	public T get(){
 	    return data;
@@ -174,7 +174,7 @@ public class MyLinkedList<T>{
 	}
 
 	public void set(T value){
-	    data = data;
+	    data = value;
 	}
 
 	public void setNext(LNode cdr){
@@ -182,24 +182,14 @@ public class MyLinkedList<T>{
 	}
     }
 
-    public static void main(String[]args){
-	MyLinkedList<Integer> m = new MyLinkedList<Integer>();
-	/*MyLinkedList l1 = new MyLinkedList();
-	  l1.add(54);
-	  l1.add(54);
-	  l1.add(54);
-	  System.out.println(l1);
-	  System.out.println(l1.size());
-	  System.out.println(l1.get(0));
-	  System.out.println(l1.get(1));
-	  System.out.println(l1.get(2));
-	  System.out.println(l1.get(3));*/
+    /*public static void main(String[]args){
+      MyLinkedList<Integer> m = new MyLinkedList<Integer>();
 
-	int i = 0;
-	while(i < 100){
-	    m.add(i);
-	    i++;
-	}
+      int i = 0;
+      while(i < 100){
+      m.add(i);
+      i++;
+      }
 	m.remove(97);
 	m.remove(20);
 	m.remove(0);
@@ -212,8 +202,26 @@ public class MyLinkedList<T>{
 	m.add(101);
 	m.add(102);
 	System.out.println(m);
-	/*System.out.println(m.indexOf(0));
-	  System.out.println(m.indexOf(50));
-	  System.out.println(m.indexOf(73));*/
+	//System.out.println(m.indexOf(0));
+	//System.out.println(m.indexOf(50));
+	//System.out.println(m.indexOf(73));
+	}*/
+
+    public static void main(String[]args){
+        MyLinkedList<Integer> i = new MyLinkedList<Integer>(); //calling a constructor USES diamond notation
+	i.add(new Integer(5));
+	System.out.println(i);
+	i.set(0, new Integer(3));
+	System.out.println(i);
+	i.remove(0);
+	System.out.println(i);
+
+	MyLinkedList<String> s = new MyLinkedList<String>();
+	s.add("bye");
+	System.out.println(s);
+	s.set(0,"Hello");
+	System.out.println(s);
+	s.remove(0);
+	System.out.println(s);
     }
 }
