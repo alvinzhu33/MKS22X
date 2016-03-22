@@ -6,7 +6,7 @@ public class MyLinkedList<T>{
     //get the value of the element at the specified index (0 based)
     public T get(int index){
 	if(index<0 || index>size-1){
-	    throw new IllegalArgumentException();
+	    throw new IndexOutOfBoundsException();
 	}
 
 	LNode copy = start;
@@ -19,7 +19,7 @@ public class MyLinkedList<T>{
     //change the value of the element at the specified index to the newValue, return the old value
     public T set(int index,T newValue){
 	if(index<0 || index>size-1){
-	    throw new IllegalArgumentException();
+	    throw new IndexOutOfBoundsException();
 	}
 
 	LNode copy = start;
@@ -40,7 +40,7 @@ public class MyLinkedList<T>{
     //remove the element at the specified index, returns the value removed
     public T remove(int index){
 	if(index<0 || index>size-1){
-	    throw new IllegalArgumentException();
+	    throw new IndexOutOfBoundsException();
 	}
 
 	T ans = start.get();
@@ -84,8 +84,7 @@ public class MyLinkedList<T>{
 
     public boolean add(int index, T value){	
 	if(index<0 || index>size){
-	    //throw new IllegalArgumentException();
-	    return false;
+	    throw new IndexOutOfBoundsException();
 	}
 
 	if(index==size){
@@ -133,7 +132,7 @@ public class MyLinkedList<T>{
 
     //returns a list formatted like: [ v1, v2, v3, ... vn-1, vn ]
     public String toString(){
-	String copy="[ ";
+	String copy="[";
 	if(size!=0){
 	    copy+=start.get();
 	}
@@ -180,6 +179,30 @@ public class MyLinkedList<T>{
 	public void setNext(LNode cdr){
 	    next = cdr;
 	}
+    }
+
+    public String toString(boolean b){
+	String info="";
+	if(b){
+	    String copy="[";
+	    if(size!=0){
+		copy+=start.get();
+	    }
+
+	    LNode current = start;
+	    for(int i=0; i<size-1; i++){
+		current = current.getNext();
+		copy += ", "+current.get();
+	    }
+	    copy += "]";
+	    
+	    info+= "   Head: ";
+	    info+= (String)start.get() + "   End: ";
+	    info+= (String)end.get();
+
+	    info = copy+info;
+	}
+	return info;
     }
 
     /*public static void main(String[]args){
