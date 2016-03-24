@@ -1,4 +1,6 @@
-public class MyLinkedList<T>{
+import java.util.*;
+
+public class MyLinkedList<T> implements Iterable<T>{
     public LNode start;
     public LNode end;
     public int size;
@@ -130,6 +132,9 @@ public class MyLinkedList<T>{
       return -1;
       }*/
 
+
+
+    //-------------------------------------------------------------------------
     //returns a list formatted like: [ v1, v2, v3, ... vn-1, vn ]
     public String toString(){
 	String copy="[";
@@ -205,6 +210,27 @@ public class MyLinkedList<T>{
 	return info;
     }
 
+
+    public class Boop implements Iterator<T>{
+	public boolean hasNext(){
+	    if(start.getNext()!=null){
+		return true;
+	    }
+	    return false;
+	}
+	public T next(){
+	    start = start.getNext();
+	    return start.get();
+	}
+	public void remove(){
+	    remove();
+	}
+    }
+    public Iterator<T> iterator(){
+	return new Boop();
+    }
+
+    //-------------------------------------------------------------------------
     /*public static void main(String[]args){
       MyLinkedList<Integer> m = new MyLinkedList<Integer>();
 
