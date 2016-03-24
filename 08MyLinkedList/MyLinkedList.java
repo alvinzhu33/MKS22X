@@ -5,6 +5,31 @@ public class MyLinkedList<T> implements Iterable<T>{
     public LNode end;
     public int size;
 
+    public Iterator<T> iterator(){
+	return new Boop();
+    }
+    public class Boop implements Iterator<T>{
+	public LNode next;
+
+	public Boop(){
+	    next = start;
+	}
+	public boolean hasNext(){
+	    return next!=null;
+	}
+	public T next(){
+	    if(! hasNext()){
+		throw new NoSuchElementException();
+	    }
+	    T temp = next.get();
+	    next = next.getNext();
+	    return temp;
+	}
+	public void remove(){
+	    remove();
+	}
+    }
+
     //get the value of the element at the specified index (0 based)
     public T get(int index){
 	if(index<0 || index>size-1){
@@ -208,26 +233,6 @@ public class MyLinkedList<T> implements Iterable<T>{
 	    info = copy+info;
 	}
 	return info;
-    }
-
-
-    public class Boop implements Iterator<T>{
-	public boolean hasNext(){
-	    if(start.getNext()!=null){
-		return true;
-	    }
-	    return false;
-	}
-	public T next(){
-	    start = start.getNext();
-	    return start.get();
-	}
-	public void remove(){
-	    remove();
-	}
-    }
-    public Iterator<T> iterator(){
-	return new Boop();
     }
 
     //-------------------------------------------------------------------------
