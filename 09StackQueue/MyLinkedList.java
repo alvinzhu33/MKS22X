@@ -240,8 +240,8 @@ public class MyLinkedList<T> implements Iterable<T>{
 		throw new NoSuchElementException();
 	    }
 
-	    T ans = stack.get(0);
-	    stack.remove(0);
+	    T ans = stack.get(size-1);
+	    stack.remove(size-1);
 	    return ans;
 	}
 	/**
@@ -253,7 +253,7 @@ public class MyLinkedList<T> implements Iterable<T>{
 		throw new NoSuchElementException();
 	    }
 	    
-	    return stack.get(0);
+	    return stack.get(size-1);
 	}
 	/**
 	 * Returns the number of items currently in the stack.
