@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class MyQueue<T>{
     public MyLinkedList<T> queue = new MyLinkedList<T>();
     public int size=0;
