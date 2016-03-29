@@ -16,7 +16,7 @@ public class MyQueue<T>{
      * @exception java.util.NoSuchElementException if the queue is empty.
      */
     T dequeue(){
-	if(queue==null){
+	if(size==0){
 	    throw new NoSuchElementException();
 	}
 	T ans = queue.get(0);
@@ -29,7 +29,7 @@ public class MyQueue<T>{
      * @exception java.util.NoSuchElementException if the queue is empty.
      */
     T peek(){
-	if(queue==null){
+	if(size==0){
 	    throw new NoSuchElementException();
 	}
 

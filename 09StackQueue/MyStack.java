@@ -12,7 +12,7 @@ public class MyStack<T>{
      * Adds the given item to the top of the stack.
      */
     void push(T item){
-	stack.add(item);
+	stack.add(0,item);
 	size++;
     }
 
@@ -22,12 +22,13 @@ public class MyStack<T>{
      */
 
     T pop(){
-	if(stack==null){
+	if(size==0){
 	    throw new NoSuchElementException();
 	}
 
-	T ans = stack.get(size-1);
-	stack.remove(size-1);
+	T ans = stack.get(0);
+	stack.remove(0);
+	size--;
 	return ans;
     }
 
@@ -36,11 +37,11 @@ public class MyStack<T>{
      * @exception java.util.NoSuchElementException if the queue is empty.
      */
     T peek(){
-	if(stack==null){
+	if(size==0){
 	    throw new NoSuchElementException();
 	}
 	    
-	return stack.get(size-1);
+	return stack.get(0);
     }
 
     /**
@@ -55,37 +56,5 @@ public class MyStack<T>{
      */
     boolean isEmpty(){
 	return size==0;
-    }
-
-    static boolean isMatching(String s){
-	MyStack<Character> stackS = new MyStack<Character>();
-	int index=0;
-	while(index<s.length()){
-	    if(s.charAt(index)=='(' ||
-	       s.charAt(index)=='{' ||
-	       s.charAt(index)=='[' ||
-	       s.charAt(index)=='<'){
-		stackS.push(s.charAt(index));
-	    }else{
-		if(stackS.peek()=='(' && s.charAt(index)==')' ||
-		   stackS.peek()=='{' && s.charAt(index)=='}' ||
-		   stackS.peek()=='[' && s.charAt(index)==']' ||
-		   stackS.peek()=='<' && s.charAt(index)=='>'){
-		    stackS.pop();
-		}
-	    }
-	    index++;
-	    System.out.println(stackS);
-	}
-	return true;
-    }
-
-    public static void main(String[]args){
-	String input = "";
-	if(args.length>0){
-	    input=args[0];
-	}
-
-	System.out.println(isMatching(input));
     }
 }
