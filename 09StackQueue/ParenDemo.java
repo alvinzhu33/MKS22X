@@ -13,6 +13,12 @@ public class ParenDemo{
 		stackS.push(s.charAt(index));
 	    }else{
 		try{
+		    /*
+		      char checker = getMatch(next);
+		      if(stackS.pop() != checker){
+		         return false;
+		      }
+		     */
 		    if(stackS.peek()=='(' && s.charAt(index)==')' ||
 		       stackS.peek()=='{' && s.charAt(index)=='}' ||
 		       stackS.peek()=='[' && s.charAt(index)==']' ||

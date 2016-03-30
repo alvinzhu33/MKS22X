@@ -57,4 +57,25 @@ public class MyStack<T>{
     boolean isEmpty(){
 	return size==0;
     }
+
+    public static void main(String[]args){
+	MyStack<Integer> mine = new MyStack<Integer>();
+	Stack<Integer> its = new Stack<Integer>();
+
+	for(int i=0; i<1000000; i++){
+	    mine.push(i);
+	    its.push(i);
+	}
+	
+	boolean match=true;
+	while(!mine.isEmpty()){
+	    if(! mine.peek().equals( its.peek() ) ){
+		match = false;
+	    }
+	    if(! mine.pop().equals( its.pop() ) ){
+		match = false;
+	    }
+	}
+	System.out.println(match);
+    }
 }
