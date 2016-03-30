@@ -50,4 +50,32 @@ public class MyQueue<T>{
 	}
 	return false;
     }
+
+    public static void main(String[]args){
+	MyQueue<Integer> mine = new MyQueue<Integer>();
+	//Queue<Integer> its = new Queue<Integer>();
+
+	for(int i=0; i<1000000; i++){
+	    mine.enqueue(i);
+	    //its.enqueue(i);
+	}
+
+	boolean match=true;
+	for(int i=0; i<1000000; i++){
+	    if(mine.dequeue()!=i){
+		match = false;
+	    }
+	}
+	
+	/*boolean match=true;
+	while(!mine.isEmpty()){
+	    if(! mine.peek().equals( its.peek() ) ){
+		match = false;
+	    }
+	    if(! mine.pop().equals( its.pop() ) ){
+		match = false;
+	    }
+	    }*/
+	System.out.println(match);
+    }
 }
