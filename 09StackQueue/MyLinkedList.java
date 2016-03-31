@@ -4,15 +4,22 @@ public class MyLinkedList<T> implements Iterable<T>{
     private class LNode{
 	private T value;
 	private LNode next;
+	private LNode prev;
+	
 	public LNode(T v){
 	    value = v;
 	}
+	
 	public T getValue(){
 	    return value;
 	}
 	public LNode getNext(){
 	    return next;
 	}
+	public LNode getPrev(){
+	    return prev;
+	}
+	
 	public T setValue(T v){
 	    T old = value;
 	    value = v;
@@ -20,7 +27,13 @@ public class MyLinkedList<T> implements Iterable<T>{
 	}
 	public void setNext(LNode n){
 	    next = n;
+	    n.setPrev(this);
 	}
+	public void setPrev(LNode p){
+	    prev = p;
+	    p.setNext(this);
+	}
+	
 	public String toString(){
 	    return value.toString();
 	}
