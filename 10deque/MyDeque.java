@@ -3,6 +3,7 @@ import java.util.*;
 public class MyDeque<T>{
     Object[] data;
     int start,end;
+    int size=0;
 
     public MyDeque(){
 	data = new Object[10];
@@ -22,10 +23,10 @@ public class MyDeque<T>{
     //When the array is full, re-size, then add. 
     //No exceptions are required since you will re-size.
     public void addFirst(T value){
-	
+	size++;
     };
     public void addLast(T value){
-	
+	size++;
     };
     
     //NoSuchElementException is thrown when there are no elements. 
