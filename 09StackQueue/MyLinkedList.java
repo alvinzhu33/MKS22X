@@ -97,7 +97,10 @@ public class MyLinkedList<T> implements Iterable<T>{
 	    head = new LNode(value);
 	    tail = head;
 	}else{
-	    tail.setNext(new LNode(value));
+	    LNode add = new LNode(value);
+	    tail.setNext(add);
+	    add.setPrev(tail);
+	    add.setNext(tail.getNext().getNext());
 	    tail = tail.getNext();
 	}
 	size++;
