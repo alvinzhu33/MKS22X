@@ -55,17 +55,45 @@ public class MyDeque<T>{
 
     //NoSuchElementException is thrown when there are no elements.
     public T removeFirst(){
-        return data[end];
+        if(data[start]==null){
+            throw new NoSuchElementException();
+        }
+        T ans = data[start];
+        data[start]=null;
+        if(start==data.length-1){
+            start=0;
+        }else{
+            start++;
+        }
+        size--;
+        return ans;
     }
     public T removeLast(){
+        if(data[end]==null){
+            throw new NoSuchElementException();
+        }
+        T ans = data[end];
+        data[end]=null;
+        if(end==0){
+            end = data.length-1;
+        }else{
+            end--;
+        }
+        size--;
         return data[end];
     }
 
     //NoSuchElementException is thrown when there are no elements.
     public T getFirst(){
+        if(data[start]==null){
+            throw new NoSuchElementException();
+        }
         return data[start];
     }
     public T getLast(){
+        if(data[end]==null){
+            throw new NoSuchElementException();
+        }
         return data[end];
     }
 
@@ -80,13 +108,15 @@ public class MyDeque<T>{
 
     public static void main(String[]args){
         MyDeque<Integer> t = new MyDeque<Integer>();
-        t.addFirst(0);
-        t.addFirst(-1);
-        t.addFirst(-2);
-        t.addLast(1);
-        t.addLast(2);
+        for(int i=0; i<10; i++){
+            t.addLast(i);
+        }
         System.out.println(t);
-        System.out.println(t.getFirst());
-        System.out.println(t.getLast());
+        for(int i=0; i<10; i++){
+            t.removeFirst();
+        }
+        System.out.println(t);
+        //System.out.println(t.getFirst());
+        //System.out.println(t.getLast());
     }
 }
