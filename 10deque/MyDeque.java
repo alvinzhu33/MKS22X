@@ -15,9 +15,18 @@ public class MyDeque<T>{
     private void grow(){
         T[] copy = (T[]) new Object[data.length*2];
 
-        for(int i=0; i<data.length; i++){
-            copy[i]=data[i];
+        int place=0;
+        int index=start;
+        while(place<data.length){
+            if(index==data.length){
+                index=0;
+            }
+            copy[place]=data[index];
+            place++;
+            index++;
         }
+        start=0;
+        end=place-1;
 
         data = copy;
     }
@@ -108,15 +117,15 @@ public class MyDeque<T>{
 
     public static void main(String[]args){
         MyDeque<Integer> t = new MyDeque<Integer>();
-        for(int i=0; i<10; i++){
-            t.addLast(i);
+        for(int i=0; i<11; i++){
+            t.addFirst(i);
         }
         System.out.println(t);
-        for(int i=0; i<10; i++){
-            t.removeFirst();
+        for(int i=0; i<11; i++){
+            t.removeLast();
         }
         System.out.println(t);
-        //System.out.println(t.getFirst());
-        //System.out.println(t.getLast());
+        System.out.println(t.getFirst());
+        System.out.println(t.getLast());
     }
 }
