@@ -63,6 +63,28 @@ public class MyLinkedList<T> implements Iterable<T>{
             }
         };
     }
+    public Iterator<T> iteratorBack(){
+        //This uses an anonymous class! You don't need to know this.
+        return new Iterator<T>()
+        {
+            private LNode current = tail;
+
+            public boolean hasNext(){
+                return current != null;
+            }
+            public T next(){
+                if(!hasNext()){
+                    throw new NoSuchElementException();
+                }
+                T value = current.getValue();
+                current = current.getPrev();
+                return value;
+            }
+            public void remove(){
+                throw new UnsupportedOperationException();
+            }
+        };
+    }
 
     public String toString(){
         String ans = "[";
@@ -82,10 +104,23 @@ public class MyLinkedList<T> implements Iterable<T>{
 
     private LNode getNth(int index){
         //check bounds before calling this method!
-        LNode temp = head;
-        while(index > 0){
-            temp = temp.getNext();
-            index --;
+        if(index<0 || index>=size()){
+            throw new IndexOutOfBoundsException();
+        }
+        LNode temp;
+        if(index<=size()/2){
+            temp = head;
+            while(index > 0){
+                temp = temp.getNext();
+                index --;
+            }
+        }else{
+            temp = tail;
+            index = size()-1-index;
+            while(index>0){
+                temp = temp.getPrev();
+                index --;
+            }
         }
         return temp;
     }
@@ -134,14 +169,18 @@ public class MyLinkedList<T> implements Iterable<T>{
             throw new IndexOutOfBoundsException("Index: "+index+", Size: "+size());
         }
         LNode temp;
-        if(index == 0){
+        if(size()==0){
+            temp = null;
+            head=null;
+            tail=null;
+        }else if(index == 0){
             temp = head;
             head = head.getNext();
-            size--;
-            if(head == null){
-                tail = null;
-            }
-            return temp.getValue();
+            head.setPrev(null);
+        }else if(index == size()-1){
+            temp = tail;
+            tail = tail.getPrev();
+            tail.setNext(null);
         }else{
             LNode p = getNth(index-1);
             temp = p.getNext();
@@ -150,9 +189,9 @@ public class MyLinkedList<T> implements Iterable<T>{
             }
             (temp.getNext()).setPrev(p);
             p.setNext(p.getNext().getNext());
-            size --;
-            return temp.getValue();
         }
+        size--;
+        return temp.getValue();
     }
 
     public int size(){
@@ -187,7 +226,7 @@ public class MyLinkedList<T> implements Iterable<T>{
     public static void main(String[]args){
         MyLinkedList<Integer> l = new MyLinkedList<Integer>();
         for(int i=0; i<11; i++){
-            l.add(i,i);
+            l.add(i);
         }
         for(int i=0; i<11; i++){
             l.remove(0);
