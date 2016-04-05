@@ -169,7 +169,7 @@ public class MyLinkedList<T> implements Iterable<T>{
             throw new IndexOutOfBoundsException("Index: "+index+", Size: "+size());
         }
         LNode temp;
-        if(size()==0){
+        if(size()==1){
             temp = null;
             head=null;
             tail=null;
