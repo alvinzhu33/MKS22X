@@ -170,7 +170,7 @@ public class MyLinkedList<T> implements Iterable<T>{
         }
         LNode temp;
         if(size()==1){
-            temp = null;
+            temp=head;
             head=null;
             tail=null;
         }else if(index == 0){
