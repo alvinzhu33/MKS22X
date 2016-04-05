@@ -115,17 +115,26 @@ public class MyDeque<T>{
         return ans;
     }
 
-    public static void main(String[]args){
-        MyDeque<Integer> t = new MyDeque<Integer>();
-        for(int i=0; i<11; i++){
-            t.addFirst(i);
-        }
-        System.out.println(t);
-        for(int i=0; i<11; i++){
-            t.removeLast();
-        }
-        System.out.println(t);
-        System.out.println(t.getFirst());
-        System.out.println(t.getLast());
+    public static void main(String[]args) {
+	    MyDeque<Integer> d = new MyDeque<>();
+    	d.addFirst(3);  //3
+    	d.addFirst(4);  //4,3
+    	System.out.println(d.getFirst());
+    	d.addLast(1);   //4,3,1
+    	System.out.println(d.getLast());
+    	d.addLast(6);  //4,3,1,6
+    	System.out.println(d.getLast());
+    	d.addFirst(9);  //9,4,3,1,6
+    	d.addLast(54);  //9,4,3,1,6,54
+    	d.addLast(2);  //9,4,3,1,6,54,2
+    	d.addLast(34);  //9,4,3,1,6,54,2,10,44,34
+    	d.addFirst(90);  //90,9,4,3,1,6,54,2,10,44,34
+        System.out.println(d);
+    	d.removeLast();  //90,9,4,3,1,6,54,5,10,44
+    	d.removeFirst();  //9,4,3,1,6,54,5,10,44
+
+    	//d.addLast(58);  //9,4,3,1,6,54,5,10,44,34,58
+    	System.out.println(d);
+        //Thanks for the Driver Anthony (Pd 6)!
     }
 }
