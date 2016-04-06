@@ -108,7 +108,7 @@ public class MyLinkedList<T> implements Iterable<T>{
             throw new IndexOutOfBoundsException();
         }
         LNode temp;
-        if(index<=size()/2){
+        if(index<size()/2){
             temp = head;
             while(index > 0){
                 temp = temp.getNext();
@@ -131,8 +131,11 @@ public class MyLinkedList<T> implements Iterable<T>{
             tail = head;
         }else{
             LNode add = new LNode(value);
-            add.setPrev(tail);
+            /*add.setPrev(tail);
             tail.setNext(add);
+            add.setNext(tail.getNext().getNext());*/
+            tail.setNext(add);
+            add.setPrev(tail);
             add.setNext(tail.getNext().getNext());
             tail = tail.getNext();
         }
@@ -147,15 +150,21 @@ public class MyLinkedList<T> implements Iterable<T>{
         LNode temp = new LNode(value);
         if(index == 0){
             temp.setNext(head);
+            head.setPrev(tail);
             head = temp;
             if(size==0){
                 tail = head;
             }
+        }else if(index==size()){
+            add(value);
+            size--;
         }else{
-            LNode p = getNth(index-1);
-            temp.setPrev(p);
-            temp.setNext(p.getNext());
-            p.setNext(temp);
+            LNode prev = getNth(index-1);
+            LNode next = prev.getNext();
+            temp.setPrev(prev);
+            temp.setNext(next);
+            prev.setNext(temp);
+            next.setPrev(temp);
             if(tail.getNext() != null){
                 tail=tail.getNext();
             }
@@ -178,17 +187,17 @@ public class MyLinkedList<T> implements Iterable<T>{
             head = head.getNext();
             head.setPrev(null);
         }else if(index == size()-1){
+            System.out.println(tail);
             temp = tail;
             tail = tail.getPrev();
+            System.out.println(tail);
             tail.setNext(null);
         }else{
             LNode p = getNth(index-1);
             temp = p.getNext();
-            if(tail == temp){
-                tail = p;
-            }
-            (temp.getNext()).setPrev(p);
-            p.setNext(p.getNext().getNext());
+            LNode n = temp.getNext();
+            n.setPrev(p);
+            p.setNext(n);
         }
         size--;
         return temp.getValue();
@@ -224,13 +233,136 @@ public class MyLinkedList<T> implements Iterable<T>{
     }
 
     public static void main(String[]args){
-        MyLinkedList<Integer> l = new MyLinkedList<Integer>();
-        for(int i=0; i<11; i++){
-            l.add(i);
+        MyLinkedList<String> m = new MyLinkedList<String>();
+        ArrayList<String>    n = new ArrayList<String>();
+
+        for(int i = 0; i < 10; i++){
+            n.add(""+i);
+            m.add(""+i);
         }
-        for(int i=0; i<11; i++){
-            l.remove(0);
+
+        try{
+            m.add(-1,"oops");
+            System.out.println("\n\nAdd -1 #####################################");
+        }catch(IndexOutOfBoundsException e){
+            System.out.println("caught");
         }
-        System.out.println(l);
+        try{
+            m.add(12,"oops");
+            System.out.println("\n\n add 12 #####################################");
+        }catch(IndexOutOfBoundsException e){
+            System.out.println("caught");
+        }
+        try{
+            m.remove(12);
+            System.out.println("\n\n remove 12 #####################################");
+        }catch(IndexOutOfBoundsException e){
+            System.out.println("caught");
+        }
+
+        try{
+            m.set(12,"Fwazzat?!?");
+            System.out.println("\n\n set 12 #####################################");
+        }catch(IndexOutOfBoundsException e){
+            System.out.println("caught");
+        }
+
+        //replace toString(true) with a debug to string that shows the head/tail
+        System.out.println(m.toString(true));
+        System.out.println(n);
+
+        //test removing from head/tail/middle
+        m.remove(0);
+        n.remove(0);
+        System.out.println(m.toString(true));
+        System.out.println(n);
+
+        m.remove(2);
+        n.remove(2);
+        System.out.println(m.toString(true));
+        System.out.println(n);
+
+        m.remove(m.size()-1);
+        n.remove(n.size()-1);
+        System.out.println(m.toString(true));
+        System.out.println(n);
+
+        //test adding to end/start
+        m.add(0,"START");
+        n.add(0,"START");
+        m.add(m.size(),"PENULTIMATE");
+        n.add(n.size(),"PENULTIMATE");
+        System.out.println(m.toString(true));
+        System.out.println(n);
+
+        //test add
+        m.add("Z-END!");
+        n.add("Z-END!");
+        System.out.println("My Size:"+m.size());
+        System.out.println(m.toString(true));
+        System.out.println(n);
+
+        //test remove random items:
+        Random rand = new Random(0);
+        for(int i = 0; i < 6000; i++){
+            int op = rand.nextInt(4);
+            System.out.println();
+            System.out.println(op);
+            if(op == 0 || n.size()==0){//ensure never empty
+                n.add(""+i);
+                m.add(""+i);
+            }else if(op == 1 ){
+                int x = rand.nextInt(n.size());
+                n.add(x,""+i);
+                m.add(x,""+i);
+            }else{
+                int x = rand.nextInt(n.size());
+                System.out.println("Index:"+x);
+                System.out.println("Size:"+m.size());
+                System.out.println(m.toString(true));
+                System.out.println(n);
+                if(!n.remove(x).equals(m.remove(x))){
+                    System.out.println(m.toString(true));
+                    System.out.println(n);
+                    System.out.println("Non matching elements removed\n");
+                    System.exit(1);
+                }
+            }
+        }
+        System.out.println(m.toString(true));
+        System.out.println(n);
+
+        /*test speed of add in front and at end.
+        long start,end;
+        System.out.println("Add 100k to front");
+
+        start = System.currentTimeMillis();
+        for(int i = 0; i < 100000; i++)
+            n.add(0,""+i);
+        end = System.currentTimeMillis();
+        System.out.println( "ArrayList "+(end-start)/1000.0 );
+
+        start = System.currentTimeMillis();
+        for(int i = 0; i < 100000; i++)
+            m.add(0,""+i);
+        end = System.currentTimeMillis();
+        System.out.println( "LinkedList "+(end-start)/1000.0 );
+
+
+        System.out.println("Add 1m to end");
+
+        start = System.currentTimeMillis();
+        for(int i = 0; i < 1000000; i++)
+            n.add(""+i);
+        end = System.currentTimeMillis();
+        System.out.println( "ArrayList "+(end-start)/1000.0 );
+
+        start = System.currentTimeMillis();
+        for(int i = 0; i < 1000000; i++)
+            m.add(""+i);
+        end = System.currentTimeMillis();
+        System.out.println( "LinkedList "+(end-start)/1000.0 );
+
+        */
     }
 }
