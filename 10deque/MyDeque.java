@@ -89,7 +89,7 @@ public class MyDeque<T>{
             end--;
         }
         size--;
-        return data[end];
+        return ans;
     }
 
     //NoSuchElementException is thrown when there are no elements.
@@ -113,6 +113,13 @@ public class MyDeque<T>{
         }
         ans+=data[data.length-1]+"]";
         return ans;
+    }
+
+    public int size(){
+        return size;
+    }
+    public boolean isEmpty(){
+        return size==0;
     }
 
     public static void main(String[]args) {
