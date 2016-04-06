@@ -131,11 +131,8 @@ public class MyLinkedList<T> implements Iterable<T>{
             tail = head;
         }else{
             LNode add = new LNode(value);
-            /*add.setPrev(tail);
-            tail.setNext(add);
-            add.setNext(tail.getNext().getNext());*/
-            tail.setNext(add);
             add.setPrev(tail);
+            tail.setNext(add);
             add.setNext(tail.getNext().getNext());
             tail = tail.getNext();
         }
@@ -148,16 +145,13 @@ public class MyLinkedList<T> implements Iterable<T>{
             throw new IndexOutOfBoundsException("Index "+index+", Size: "+size());
         }
         LNode temp = new LNode(value);
-        if(index == 0){
-            temp.setNext(head);
-            head.setPrev(tail);
-            head = temp;
-            if(size==0){
-                tail = head;
-            }
-        }else if(index==size()){
+        if(index==size() || size()==0){
             add(value);
             size--;
+        }else if(index == 0){
+            temp.setNext(head);
+            head.setPrev(temp);
+            head = temp;
         }else{
             LNode prev = getNth(index-1);
             LNode next = prev.getNext();
@@ -187,10 +181,8 @@ public class MyLinkedList<T> implements Iterable<T>{
             head = head.getNext();
             head.setPrev(null);
         }else if(index == size()-1){
-            System.out.println(tail);
             temp = tail;
             tail = tail.getPrev();
-            System.out.println(tail);
             tail.setNext(null);
         }else{
             LNode p = getNth(index-1);
@@ -306,8 +298,8 @@ public class MyLinkedList<T> implements Iterable<T>{
         Random rand = new Random(0);
         for(int i = 0; i < 6000; i++){
             int op = rand.nextInt(4);
-            System.out.println();
-            System.out.println(op);
+            //System.out.println();
+            //System.out.println(op);
             if(op == 0 || n.size()==0){//ensure never empty
                 n.add(""+i);
                 m.add(""+i);
@@ -317,20 +309,21 @@ public class MyLinkedList<T> implements Iterable<T>{
                 m.add(x,""+i);
             }else{
                 int x = rand.nextInt(n.size());
-                System.out.println("Index:"+x);
-                System.out.println("Size:"+m.size());
-                System.out.println(m.toString(true));
-                System.out.println(n);
+                //System.out.println("Index:"+x);
+                //System.out.println("Size:"+m.size());
                 if(!n.remove(x).equals(m.remove(x))){
-                    System.out.println(m.toString(true));
-                    System.out.println(n);
+                    //System.out.println(m.toString(true));
+                    //System.out.println(n);
                     System.out.println("Non matching elements removed\n");
                     System.exit(1);
                 }
             }
+            //System.out.println(m.toString(true));
+            //System.out.println(n);
         }
-        System.out.println(m.toString(true));
-        System.out.println(n);
+        //System.out.println(m.toString(true));
+        //System.out.println(n);
+        System.out.println("Sucess!!!");
 
         /*test speed of add in front and at end.
         long start,end;
