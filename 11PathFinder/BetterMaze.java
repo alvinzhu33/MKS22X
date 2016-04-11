@@ -38,16 +38,14 @@ public class BetterMaze{
     }
 
 
-    /**initialize the frontier as a queue and call solve
-    **/
+    /**initialize the frontier as a queue and call solve**/
     public boolean solveBFS(){
         /** IMPLEMENT THIS **/
         return false;
     }
 
 
-    /**initialize the frontier as a stack and call solve
-    */
+    /**initialize the frontier as a stack and call solve*/
     public boolean solveDFS(){
         /** IMPLEMENT THIS **/
         return false;
@@ -66,7 +64,6 @@ public class BetterMaze{
         animate = b;
     }
 
-    //-------------------------------------------------------------
     public BetterMaze(String filename){
         animate = false;
         int maxc = 0;
@@ -107,6 +104,7 @@ public class BetterMaze{
         }
     }
 
+    //-------------------------------------------------------------
     private static final String CLEAR_SCREEN =  "\033[2J";
     private static final String HIDE_CURSOR =  "\033[?25l";
     private static final String SHOW_CURSOR =  "\033[?25h";
