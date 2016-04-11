@@ -1,31 +1,18 @@
 import java.util.*;
 
 public class FrontierStack<T> implements Frontier<T>{
-    Stack<T> s;
-    Node head;
+    private Stack<T> s;
 
     public FrontierStack(){
-	s = new Stack<T>();
+        s = new Stack<T>();
     }
-    public void add(Node element){
+    public void add(T element){
         s.push(element);
-	if(s.size()==1){
-	    head = element;
-	}
     }
     public T next(){
-        s.pop();
-        return s.peek();
+        return s.pop();
     }
     public boolean hasNext(){
-        /*T copy = s.pop();
-        if(s.empty()){
-            s.push(copy);
-            return false;
-        }else{
-            s.push(copy);
-            return true;
-	    }*/
-	return s.size()>1;
+        return s.size()>1;
     }
 }
