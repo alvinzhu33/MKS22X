@@ -1,13 +1,13 @@
 public class Node<T>{
-    T value;
+    Coordinate what;
     Node prev;
 
-    public Node(T v, Node where){
-	value = v;
-	prev = where;
+    public Node(Coordinate c, Node from){
+	what = c;
+	prev = from;
     }
-    public T getValue(){
-	return value;
+    public Coordinate getCoordinate(){
+	return what;
     }
     public Node getPrev(){
 	return prev;
