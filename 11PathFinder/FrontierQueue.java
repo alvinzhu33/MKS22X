@@ -9,10 +9,13 @@ public class FrontierQueue<T> implements Frontier<T>{
     public void add(T element){
         q.add(element);
     }
-    public T next(){
-        return q.remove();
-    }
     public boolean hasNext(){
         return q.size()>1;
+    }
+    public T next(){
+	if(! hasNext()){
+	    throw new NoSuchElementException();
+	}
+        return q.remove();
     }
 }

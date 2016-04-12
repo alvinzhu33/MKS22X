@@ -3,15 +3,17 @@ import java.io.*;
 
 public class BetterMaze{
     private class Node{
-        private Coordinate what;
+        private int[] coordinate;
         private Node prev;
 
-        public Node(Coordinate c, Node from){
-            what = c;
+        public Node(int x, int y, Node from){
+            coordinate = new int[2];
+	    coordinate[0]=x;
+	    coordinate[1]=y;
             prev = from;
         }
-        public Coordinate getCoordinate(){
-            return what;
+        public int[] getCoordinate(){
+            return coordinate;
         }
         public Node getPrev(){
             return prev;
@@ -19,10 +21,12 @@ public class BetterMaze{
     }
 
     private char[][] maze;
-    private int[]    solution;
-    private int      startRow,startCol;
+    private int startRow,startCol;
+
     private Frontier<Node> placesToGo;
-    private boolean  animate;//default to false
+    private int[] solution;
+
+    private boolean  animate;
 
     /**return a COPY of solution.
     *This should be : [x1,y1,x2,y2,x3,y3...]
@@ -37,29 +41,45 @@ public class BetterMaze{
         return new int[1];
     }
 
-
-    /**initialize the frontier as a queue and call solve**/
     public boolean solveBFS(){
-        /** IMPLEMENT THIS **/
-        return false;
+        placesToGo = new FrontierQueue<Node>();
+        return solve();
     }
 
-
-    /**initialize the frontier as a stack and call solve*/
     public boolean solveDFS(){
-        /** IMPLEMENT THIS **/
-        return false;
+        placesToGo=new FrontierStack<Node>();
+        return solve();
     }
 
     /**Search for the end of the maze using the frontier.
     Keep going until you find a solution or run out of elements on the frontier.
     **/
     private boolean solve(){
-        /** IMPLEMENT THIS **/
+	Node here;
+        while(placesToGo.hasNext()){
+	    here = new Node(startRow,startCol,null);
+	    /*OR
+	      for(Node n: getNeighbors(current));
+	     */
+	    int x = placesToGo.next().getCoordinate()[0];
+	    int y = placesToGo.next().getCoordinate()[1];
+	    if(x+1<maze[0].length && y+1<maze.length){
+		placesToGo.add(new Node(x+1,y+1,here));
+	    }
+	    if(x+1<maze[0].length && y-1>=0){
+		placesToGo.add(new Node(x+1,y-1,here));
+	    }
+	    if(x-1>=0 && y+1<maze.length){
+		placesToGo.add(new Node(x-1,y+1,here));
+	    }
+	    if(x-1>=0 && y-1>=0){
+		placesToGo.add(new Node(x-1,y-1,here));
+	    }
+	    maze[x][y]='.';
+	}
         return false;
     }
 
-    /**mutator for the animate variable  **/
     public void setAnimate(boolean b){
         animate = b;
     }

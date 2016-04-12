@@ -10,6 +10,9 @@ public class FrontierStack<T> implements Frontier<T>{
         s.push(element);
     }
     public T next(){
+	if(! hasNext()){
+	    throw new NoSuchElementException();
+	}
         return s.pop();
     }
     public boolean hasNext(){
