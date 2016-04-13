@@ -8,8 +8,8 @@ public class BetterMaze{
 
         public Node(int x, int y, Node from){
             coordinate = new int[2];
-	    coordinate[0]=x;
-	    coordinate[1]=y;
+            coordinate[0]=x;
+            coordinate[1]=y;
             prev = from;
         }
         public int[] getCoordinate(){
@@ -55,29 +55,35 @@ public class BetterMaze{
     Keep going until you find a solution or run out of elements on the frontier.
     **/
     private boolean solve(){
-	Node here;
+        Node current;
         while(placesToGo.hasNext()){
-	    here = new Node(startRow,startCol,null);
-	    /*OR
-	      for(Node n: getNeighbors(current));
-	     */
-	    int x = placesToGo.next().getCoordinate()[0];
-	    int y = placesToGo.next().getCoordinate()[1];
-	    if(x+1<maze[0].length && y+1<maze.length){
-		placesToGo.add(new Node(x+1,y+1,here));
-	    }
-	    if(x+1<maze[0].length && y-1>=0){
-		placesToGo.add(new Node(x+1,y-1,here));
-	    }
-	    if(x-1>=0 && y+1<maze.length){
-		placesToGo.add(new Node(x-1,y+1,here));
-	    }
-	    if(x-1>=0 && y-1>=0){
-		placesToGo.add(new Node(x-1,y-1,here));
-	    }
-	    maze[x][y]='.';
-	}
+            current = new Node(startRow,startCol,null);
+            for(Node n: getNeighbors(current)){
+
+            }
+            maze[current.getCoordinate()[0]][current.getCoordinate()[1]]='.';
+        }
         return false;
+    }
+
+    private Node[] getNeighbors(Node from){
+        Node[] ans = new Node[4];
+
+        int x = from.getCoordinate()[0];
+        int y = from.getCoordinate()[1];
+        if(x+1<maze[0].length && y+1<maze.length){
+            ans[0] = new Node(x+1,y+1,from);
+        }
+        if(x+1<maze[0].length && y-1>=0){
+            ans[1] = new Node(x+1,y-1,from);
+        }
+        if(x-1>=0 && y+1<maze.length){
+            ans[2] = new Node(x-1,y+1,from);
+        }
+        if(x-1>=0 && y-1>=0){
+            ans[3] = new Node(x-1,y-1,from);
+        }
+        return ans;
     }
 
     public void setAnimate(boolean b){
