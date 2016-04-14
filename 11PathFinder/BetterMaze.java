@@ -57,11 +57,14 @@ public class BetterMaze{
     Keep going until you find a solution or run out of elements on the frontier.
     **/
     private boolean solve(){
-        Node current = new Node(startRow,startCol,null);
-        placesToGo.add(current);
+        Node start = new Node(startRow,startCol,null);
+        placesToGo.add(start);
+        //int counter=0;
         while(placesToGo.hasNext()){
+            Node current = placesToGo.next();
             for(Node n: getNeighbors(current)){
-                System.out.println(n);
+                //System.out.println(counter);
+                //wait(300);
                 if(n!=null){
                     int x = n.getX();
                     int y = n.getY();
@@ -75,8 +78,8 @@ public class BetterMaze{
                     System.out.println(this);;
                 }
             }
-            System.out.println("next");
-            placesToGo.next();
+            //System.out.println(counter);
+            //counter++;
         }
         return false;
     }
@@ -86,17 +89,22 @@ public class BetterMaze{
 
         int x = from.getX();
         int y = from.getY();
-        if(x+1<maze[0].length && maze[x+1][y]!='#'){
-            ans[0] = new Node(x+1,y,from);
+        int n=0;
+        if(x+1<maze[0].length && maze[x+1][y]!='#' && maze[x+1][y]!='.'){
+            ans[n] = new Node(x+1,y,from);
+            n++;
         }
-        if(x-1<maze[0].length && maze[x-1][y]!='#'){
-            ans[1] = new Node(x-1,y,from);
+        if(x-1<maze[0].length && maze[x-1][y]!='#' && maze[x-1][y]!='.'){
+            ans[n] = new Node(x-1,y,from);
+            n++;
         }
-        if(y+1<maze.length && maze[x][y+1]!='#'){
-            ans[2] = new Node(x,y+1,from);
+        if(y+1<maze.length && maze[x][y+1]!='#' && maze[x][y+1]!='.'){
+            ans[n] = new Node(x,y+1,from);
+            n++;
         }
-        if(y-1>=0 && maze[x][y-1]!='#'){
-            ans[3] = new Node(x,y-1,from);
+        if(y-1>=0 && maze[x][y-1]!='#' && maze[x][y-1]!='.'){
+            ans[n] = new Node(x,y-1,from);
+            n++;
         }
         return ans;
     }

@@ -13,9 +13,9 @@ public class FrontierQueue<T> implements Frontier<T>{
         return q.size()>0;
     }
     public T next(){
-	if(! hasNext()){
-	    throw new NoSuchElementException();
-	}
+        if(! hasNext()){
+            throw new NoSuchElementException();
+        }
         return q.remove();
     }
 }
