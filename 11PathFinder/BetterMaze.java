@@ -23,7 +23,7 @@ public class BetterMaze{
     }
 
     private char[][] maze;
-    private char[][] finalBoard;
+    //private char[][] finalBoard;
     private int startRow,startCol;
 
     private Frontier<Node> placesToGo;
@@ -56,20 +56,25 @@ public class BetterMaze{
             end = end.getPrev();
         }
 
+        String ans = "[ ";
+        if(e!=null){
+            for(int i=0; i<solution.length-2; i+=2){
+                ans+= solution[i]+" "+solution[i+1]+", ";
+            }
+            ans+= solution[solution.length-2]+" "+solution[solution.length-1];
+        }
+        ans+="]";
+        //System.out.println(solution.length);
+        System.out.println(ans);
+
         return solution;
     }
 
-    public String printSolution(){
-        String ans = "[ ";
-        //System.out.println(solution.length);
-        for(int i=0; i<solution.length; i++){
-            ans+= solution[i]+", ";
-        }
-        ans+= solution[solution.length-2]+"]";
-        return ans;
-    }
+    /*public String printSolution(){
 
-    public void printFinalBoard(){
+    }*/
+
+    /*public void printFinalBoard(){
         for(int i=0; i<solution.length; i+=2){
             finalBoard[solution[i]][solution[i+1]]='.';
         }
@@ -84,6 +89,14 @@ public class BetterMaze{
         }
 
         System.out.println(board);
+    }*/
+
+    private void path(){
+        for(int i=0; i<solution.length; i=i+2){
+            maze[solution[i]][solution[i+1]]='X';
+        }
+        maze[startRow][startCol]='S';
+        maze[e.getX()][e.getY()]='E';
     }
 
     public boolean solveBFS(){
@@ -115,13 +128,15 @@ public class BetterMaze{
                     if(maze[x][y]=='E'){
                         e = n;
                         solutionCoordinates();
+                        path();
+                        System.out.println(this);
                         return true;
                     }
                     placesToGo.add(n);
                     maze[x][y]='.';
                 }
                 if(animate){
-                    wait(50);
+                    //wait(30);
                     System.out.println(this);;
                 }
             }
@@ -137,15 +152,15 @@ public class BetterMaze{
         int x = from.getX();
         int y = from.getY();
         int n=0;
-        if(x+1<maze[0].length && maze[x+1][y]!='#' && maze[x+1][y]!='.'){
+        if(x+1<maze.length && maze[x+1][y]!='#' && maze[x+1][y]!='.'){
             ans[n] = new Node(x+1,y,from);
             n++;
         }
-        if(x-1<maze[0].length && maze[x-1][y]!='#' && maze[x-1][y]!='.'){
+        if(x-1>=0 && maze[x-1][y]!='#' && maze[x-1][y]!='.'){
             ans[n] = new Node(x-1,y,from);
             n++;
         }
-        if(y+1<maze.length && maze[x][y+1]!='#' && maze[x][y+1]!='.'){
+        if(y+1<maze[0].length && maze[x][y+1]!='#' && maze[x][y+1]!='.'){
             ans[n] = new Node(x,y+1,from);
             n++;
         }
@@ -198,7 +213,7 @@ public class BetterMaze{
                 startRow = i / maxc;
             }
         }
-        finalBoard=maze;
+        //finalBoard=maze;
     }
 
     //-------------------------------------------------------------
