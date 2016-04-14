@@ -3,17 +3,19 @@ import java.io.*;
 
 public class BetterMaze{
     private class Node{
-        private int[] coordinate;
+        private int x,y;
         private Node prev;
 
         public Node(int x, int y, Node from){
-            coordinate = new int[2];
-            coordinate[0]=x;
-            coordinate[1]=y;
+            this.x=x;
+            this.y=y;
             prev = from;
         }
-        public int[] getCoordinate(){
-            return coordinate;
+        public int getX(){
+            return x;
+        }
+        public int getY(){
+            return y;
         }
         public Node getPrev(){
             return prev;
@@ -55,13 +57,26 @@ public class BetterMaze{
     Keep going until you find a solution or run out of elements on the frontier.
     **/
     private boolean solve(){
-        Node current;
+        Node current = new Node(startRow,startCol,null);
+        placesToGo.add(current);
         while(placesToGo.hasNext()){
-            current = new Node(startRow,startCol,null);
             for(Node n: getNeighbors(current)){
-
+                System.out.println(n);
+                if(n!=null){
+                    int x = n.getX();
+                    int y = n.getY();
+                    if(maze[x][y]=='E'){
+                        return true;
+                    }
+                    placesToGo.add(n);
+                    maze[x][y]='.';
+                }
+                if(animate){
+                    System.out.println(this);;
+                }
             }
-            maze[current.getCoordinate()[0]][current.getCoordinate()[1]]='.';
+            System.out.println("next");
+            placesToGo.next();
         }
         return false;
     }
@@ -69,19 +84,19 @@ public class BetterMaze{
     private Node[] getNeighbors(Node from){
         Node[] ans = new Node[4];
 
-        int x = from.getCoordinate()[0];
-        int y = from.getCoordinate()[1];
-        if(x+1<maze[0].length && y+1<maze.length){
-            ans[0] = new Node(x+1,y+1,from);
+        int x = from.getX();
+        int y = from.getY();
+        if(x+1<maze[0].length && maze[x+1][y]!='#'){
+            ans[0] = new Node(x+1,y,from);
         }
-        if(x+1<maze[0].length && y-1>=0){
-            ans[1] = new Node(x+1,y-1,from);
+        if(x-1<maze[0].length && maze[x-1][y]!='#'){
+            ans[1] = new Node(x-1,y,from);
         }
-        if(x-1>=0 && y+1<maze.length){
-            ans[2] = new Node(x-1,y+1,from);
+        if(y+1<maze.length && maze[x][y+1]!='#'){
+            ans[2] = new Node(x,y+1,from);
         }
-        if(x-1>=0 && y-1>=0){
-            ans[3] = new Node(x-1,y-1,from);
+        if(y-1>=0 && maze[x][y-1]!='#'){
+            ans[3] = new Node(x,y-1,from);
         }
         return ans;
     }

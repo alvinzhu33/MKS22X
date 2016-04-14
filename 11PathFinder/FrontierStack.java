@@ -16,6 +16,6 @@ public class FrontierStack<T> implements Frontier<T>{
         return s.pop();
     }
     public boolean hasNext(){
-        return s.size()>1;
+        return s.size()>0;
     }
 }

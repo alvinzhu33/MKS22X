@@ -10,7 +10,7 @@ public class FrontierQueue<T> implements Frontier<T>{
         q.add(element);
     }
     public boolean hasNext(){
-        return q.size()>1;
+        return q.size()>0;
     }
     public T next(){
 	if(! hasNext()){
