@@ -23,10 +23,12 @@ public class BetterMaze{
     }
 
     private char[][] maze;
+    private char[][] finalBoard;
     private int startRow,startCol;
 
     private Frontier<Node> placesToGo;
     private int[] solution;
+    private Node e;
 
     private boolean  animate;
 
@@ -39,8 +41,49 @@ public class BetterMaze{
     *Postcondition:  the correct solution is in the returned array
     **/
     public int[] solutionCoordinates(){
-        /** IMPLEMENT THIS **/
-        return new int[1];
+        Node end = e;
+        int count = 0;
+        while(end!=null){
+            end = end.getPrev();
+            count++;
+        }
+
+        end=e;
+        solution = new int[count*2];
+        for(int i=count; i>0; i--){
+            solution[i*2-2]=end.getX();
+            solution[i*2-1]=end.getY();
+            end = end.getPrev();
+        }
+
+        return solution;
+    }
+
+    public String printSolution(){
+        String ans = "[ ";
+        //System.out.println(solution.length);
+        for(int i=0; i<solution.length; i++){
+            ans+= solution[i]+", ";
+        }
+        ans+= solution[solution.length-2]+"]";
+        return ans;
+    }
+
+    public void printFinalBoard(){
+        for(int i=0; i<solution.length; i+=2){
+            finalBoard[solution[i]][solution[i+1]]='.';
+        }
+        finalBoard[startRow][startCol]='E';
+
+        String board = "";
+        for(int i=0; i<maze.length; i++){
+            for(int x=0; x<maze[i].length; x++){
+                board+=finalBoard[i][x];
+            }
+            board+='\n';
+        }
+
+        System.out.println(board);
     }
 
     public boolean solveBFS(){
@@ -59,6 +102,7 @@ public class BetterMaze{
     private boolean solve(){
         Node start = new Node(startRow,startCol,null);
         placesToGo.add(start);
+        maze[startRow][startCol]='.';
         //int counter=0;
         while(placesToGo.hasNext()){
             Node current = placesToGo.next();
@@ -69,12 +113,15 @@ public class BetterMaze{
                     int x = n.getX();
                     int y = n.getY();
                     if(maze[x][y]=='E'){
+                        e = n;
+                        solutionCoordinates();
                         return true;
                     }
                     placesToGo.add(n);
                     maze[x][y]='.';
                 }
                 if(animate){
+                    wait(50);
                     System.out.println(this);;
                 }
             }
@@ -151,6 +198,7 @@ public class BetterMaze{
                 startRow = i / maxc;
             }
         }
+        finalBoard=maze;
     }
 
     //-------------------------------------------------------------
@@ -194,6 +242,13 @@ public class BetterMaze{
                 ans += color(33,40)+c;
             }
         }
+
+        /*if(e!=null){
+            for(int i=0; i<solution.length/2; i++){
+                maze[i]
+            }
+        }*/
+
         //nice animation string
         if(animate){
             return HIDE_CURSOR + go(0,0) + ans + color(37,40) +"\n"+ SHOW_CURSOR + color(37,40);
