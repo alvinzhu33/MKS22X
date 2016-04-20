@@ -27,7 +27,14 @@ public class BSTree<T extends Comparable<T>>{
     Node root;
 
     public void add(T value){
-	
+	Node see=root;
+	while(root.getLeft()!=null || root.getRight()!=null){
+	    if(value<see.getData()){
+		see=see.getLeft();
+	    }else{
+		see=see.getRight();
+	    }
+	}
     }
     public String toString(){
 	return "hello";
