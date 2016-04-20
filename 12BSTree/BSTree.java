@@ -25,4 +25,17 @@ public class BSTree<T extends Comparable<T>>{
     }
 
     Node root;
+
+    public void add(T value){
+	
+    }
+    public String toString(){
+	return "hello";
+    }
+    public boolean contains(T value){
+	return false;
+    }
+    public int getHeight(){
+	return 0;
+    }
 }
