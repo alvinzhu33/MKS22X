@@ -1,8 +1,14 @@
-public class BSTree<T extends comparable<T>>{
+import java.util.*;
+
+public class BSTree<T extends Comparable<T>>{
     private class Node{
 	T data;
 	Node left;
 	Node right;
+
+	public Node(T value){
+	    data=value;
+	}
 
 	public T getData(){
 	    return data;
@@ -24,17 +30,33 @@ public class BSTree<T extends comparable<T>>{
 	    right=r;
 	}
 
-	//real methods here
 	public int height(){ 
+	    if(left!=null || right!=null){
+		return 1;
+	    }
 	    return 0;
 	}
 	public void add(T value){
+	    if(value.compareTo(data)<0){
+		left = new Node(value);
+	    }
+	    if(value.compareTo(data)>0){
+		right = new Node(value);
+	    }
 	}
 	public String toString(){
-	    return "";
+	    String l = "_";
+	    String r = "_";
+	    if(left!=null){
+		l=""+left;
+	    }
+	    if(right!=null){
+		r=""+right;
+	    }
+	    return ""+data+":|"+l+" "+r+"| ";
 	}
 	public boolean contains(T value){
-	    return false;
+	    return data==value;
 	}
      
     }
@@ -42,7 +64,7 @@ public class BSTree<T extends comparable<T>>{
     private Node root;
 
     //OUTER methods here are wrapper methods for the root
-    public getHeight(){
+    public int getHeight(){
 	//call the root's methods
 	//check for empty first!
 	return root.height();
@@ -50,6 +72,10 @@ public class BSTree<T extends comparable<T>>{
 
     public void add(T value){
 	//check for empty before you do things with root.
+	if(root==null){
+	    root=new Node(value);
+	}
+	System.out.println(root);
     }
     public String toString(){
 	//check for empty before you do things with root.
@@ -58,5 +84,10 @@ public class BSTree<T extends comparable<T>>{
     public boolean contains(T value){
 	//check for empty before you do things with root.
 	return false;
+    }
+
+    public static void main(String[]args){
+	BSTree<Integer> b= new BSTree<Integer>();
+	b.add(1);
     }
 }
