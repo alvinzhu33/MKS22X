@@ -6,10 +6,6 @@ public class BSTree<T extends Comparable<T>>{
 	Node left;
 	Node right;
 
-	public Node(T value){
-	    data=value;
-	}
-
 	public T getData(){
 	    return data;
 	}
@@ -37,11 +33,31 @@ public class BSTree<T extends Comparable<T>>{
 	    return 0;
 	}
 	public void add(T value){
-	    if(value.compareTo(data)<0){
+	    /*if(value.compareTo(data)<0){
 		left = new Node(value);
 	    }
 	    if(value.compareTo(data)>0){
 		right = new Node(value);
+	    }
+
+	    Node check=root;
+	    Node added=root;
+	    while(check.height()!=0){
+		if(value.compareTo(check.getData())<0){
+		    check=check.getLeft(); 
+		}else{
+		    check=check.getRight();
+		}
+	    }
+	    if(value.compareTo(check.getData())<0){
+		check.setLeft(new Node(value));
+	    }else{
+		check.setRight(new Node(value));
+	    }
+	    root=check;
+	    System.out.println(root);*/
+	    if(height()==0){
+		data=value;
 	    }
 	}
 	public String toString(){
@@ -53,7 +69,7 @@ public class BSTree<T extends Comparable<T>>{
 	    if(right!=null){
 		r=""+right;
 	    }
-	    return ""+data+":|"+l+" "+r+"| ";
+	    return ""+data+":| "+l+" "+r+"| ";
 	}
 	public boolean contains(T value){
 	    return data==value;
@@ -63,6 +79,10 @@ public class BSTree<T extends Comparable<T>>{
 
     private Node root;
 
+    public BSTree(){
+	root=new Node();
+    }
+
     //OUTER methods here are wrapper methods for the root
     public int getHeight(){
 	//call the root's methods
@@ -71,15 +91,11 @@ public class BSTree<T extends Comparable<T>>{
     }
 
     public void add(T value){
-	//check for empty before you do things with root.
-	if(root==null){
-	    root=new Node(value);
-	}
-	System.out.println(root);
+	root.add(value);
     }
     public String toString(){
 	//check for empty before you do things with root.
-	return "";
+	return root.toString();
     }
     public boolean contains(T value){
 	//check for empty before you do things with root.
@@ -89,5 +105,9 @@ public class BSTree<T extends Comparable<T>>{
     public static void main(String[]args){
 	BSTree<Integer> b= new BSTree<Integer>();
 	b.add(1);
+	System.out.println(b);
+	//b.add(0);
+	//b.add(5);
+	//b.add(-1);
     }
 }
