@@ -72,7 +72,20 @@ public class BSTree<T extends Comparable<T>>{
             return "|"+data+": "+l+" "+r+"| ";
         }
         public boolean contains(T value){
-            return data==value;
+            if(data==value){
+                return true;
+            }else{
+                if(value.compareTo(getData())<0){
+                    if(left!=null){
+                        return left.contains(value);
+                    }
+                }else{
+                    if(right!=null){
+                        return right.contains(value);
+                    }
+                }
+            }
+            return false;
         }
 
     }
@@ -98,8 +111,7 @@ public class BSTree<T extends Comparable<T>>{
         return root.toString();
     }
     public boolean contains(T value){
-        //check for empty before you do things with root.
-        return false;
+        return root.contains(value);
     }
 
     public static void main(String[]args){
@@ -111,5 +123,14 @@ public class BSTree<T extends Comparable<T>>{
         b.add(6);
         b.add(4);
         System.out.println(b);
+        /*System.out.println(b.contains(1));
+        System.out.println(b.contains(0));
+        System.out.println(b.contains(5));
+        System.out.println(b.contains(-1));
+        System.out.println(b.contains(6));
+        System.out.println(b.contains(4));
+        System.out.println(b.contains(25));
+        System.out.println(b.contains(30));
+        System.out.println(b.contains(-5));*/
     }
 }
