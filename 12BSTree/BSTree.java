@@ -35,12 +35,32 @@ public class BSTree<T extends Comparable<T>>{
         }
 
         public int height(){
-            int counter=0;
-            if(left!=null || right!=null){
-                return 1;
+            if(data==null){
+                return 0;
+            }else{
+                return height(1);
             }
-            return 0;
         }
+
+        public int height(int counter){
+            if(left==null && right==null){
+                return counter;
+            }
+            if(right==null){
+                return left.height(counter+1);
+            }
+            if(left==null){
+                return right.height(counter+1);
+            }
+            int rightC = right.height(counter+1);
+            int leftC = left.height(counter+1);
+            if(rightC>leftC){
+                return rightC;
+            }else{
+                return leftC;
+            }
+        }
+
         public void add(T value){
             if(data==null){
                 data=value;
@@ -87,19 +107,22 @@ public class BSTree<T extends Comparable<T>>{
             }
             return false;
         }
-
+        public T remove(T value){
+            return root.getData();
+        }
     }
 
     private Node root;
 
     public BSTree(){
-        root=new Node();
+        root = new Node();
     }
 
     //OUTER methods here are wrapper methods for the root
     public int getHeight(){
-        //call the root's methods
-        //check for empty first!
+        if(root.getData()==null){
+            return 0;
+        }
         return root.height();
     }
 
@@ -107,22 +130,31 @@ public class BSTree<T extends Comparable<T>>{
         root.add(value);
     }
     public String toString(){
-        //check for empty before you do things with root.
+        if(root.getData()==null){
+            return "";
+        }
         return root.toString();
     }
     public boolean contains(T value){
+        if(root.getData()==null){
+            return false;
+        }
         return root.contains(value);
     }
 
     public static void main(String[]args){
         BSTree<Integer> b= new BSTree<Integer>();
+        System.out.println(b);
         b.add(1);
         b.add(0);
         b.add(5);
         b.add(-1);
         b.add(6);
         b.add(4);
+        b.add(7);
+        b.add(8);
         System.out.println(b);
+        System.out.println(b.getHeight());
         /*System.out.println(b.contains(1));
         System.out.println(b.contains(0));
         System.out.println(b.contains(5));
