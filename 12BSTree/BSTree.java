@@ -111,9 +111,17 @@ public class BSTree<T extends Comparable<T>>{
             if(data==null){
                 throw new IllegalArgumentException();
             }
-            if(value==left.getData()){
+            if(left!=null && value==left.getData()){
                 Node leftD = left.getLeft();
                 Node rightD = left.getRight();
+                if(leftD==null){
+                    setLeft(rightD);
+                    return value;
+                }
+                if(rightD==null){
+                    setLeft(leftD);
+                    return value;
+                }
                 if(leftD.height()>rightD.height()){
                     setLeft(leftD);
                 }else{
@@ -121,9 +129,17 @@ public class BSTree<T extends Comparable<T>>{
                 }
                 return value;
             }
-            if(value==right.getData()){
+            if(right!=null && value==right.getData()){
                 Node leftD = right.getLeft();
                 Node rightD = right.getRight();
+                if(leftD==null){
+                    setRight(rightD);
+                    return value;
+                }
+                if(rightD==null){
+                    setRight(leftD);
+                    return value;
+                }
                 if(leftD.height()>rightD.height()){
                     setRight(leftD);
                 }else{
@@ -185,7 +201,9 @@ public class BSTree<T extends Comparable<T>>{
         b.add(8);
         System.out.println(b);
         System.out.println(b.getHeight());
-        b.remove(8);
+        //b.remove(8);
+        //b.remove(6);
+        b.remove(5);
         System.out.println(b);
         /*System.out.println(b.contains(1));
         System.out.println(b.contains(0));
