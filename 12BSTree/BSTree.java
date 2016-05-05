@@ -90,7 +90,7 @@ public class BSTree<T extends Comparable<T>>{
                 r=""+right.toString();
             }
             //return "|"+data+": "+l+" "+r+"| ";
-	    return data+" "+l+" "+r+" ";
+	    return data+" "+l+" "+r+"";
         }
         public boolean contains(T value){
             if(data==value){
@@ -186,6 +186,24 @@ public class BSTree<T extends Comparable<T>>{
         return root.contains(value);
     }
     public T remove(T value){
+	if(value==root.getData()){
+	    if(root.getLeft()!=null && root.getRight()!=null){
+		Node leftD = root.getLeft();
+                Node rightD = root.getRight();
+		if(leftD.height()>rightD.height()){
+		    root = root.getLeft();
+		}else{
+		    root = root.getRight();
+		}
+		return root.getData();
+	    }
+	    if(root.getRight()==null){
+		root = root.getLeft();
+	    }else{
+		root = root.getRight();
+	    }
+	    return root.getData();
+	}
         return root.remove(value);
     }
 
@@ -193,20 +211,32 @@ public class BSTree<T extends Comparable<T>>{
         BSTree<Integer> b= new BSTree<Integer>();
         System.out.println(b);
         b.add(1);
+	System.out.println(b);
         b.add(0);
+	System.out.println(b);
         b.add(5);
+	System.out.println(b);
         b.add(-1);
+	System.out.println(b);
         b.add(6);
+	System.out.println(b);
         b.add(4);
+	System.out.println(b);
         b.add(7);
+	System.out.println(b);
         b.add(8);
         System.out.println(b);
+	
         System.out.println(b.getHeight());
-        //b.remove(8);
-        //b.remove(6);
+	
+        b.remove(8);
+	System.out.println(b);
+        b.remove(6);
+	System.out.println(b);
         b.remove(5);
         System.out.println(b);
-        /*System.out.println(b.contains(1));
+	
+        System.out.println(b.contains(1));
         System.out.println(b.contains(0));
         System.out.println(b.contains(5));
         System.out.println(b.contains(-1));
@@ -214,6 +244,44 @@ public class BSTree<T extends Comparable<T>>{
         System.out.println(b.contains(4));
         System.out.println(b.contains(25));
         System.out.println(b.contains(30));
-        System.out.println(b.contains(-5));*/
+        System.out.println(b.contains(-5));
+	System.out.println();
+
+	BSTree<Integer> test= new BSTree<Integer>();
+	System.out.println(test);
+	test.add(10);
+	System.out.println(test);
+	test.add(15);
+	System.out.println(test);
+	test.add(7);
+	System.out.println(test);
+	test.add(12);
+	System.out.println(test);
+	test.add(36);
+	System.out.println(test);
+	test.add(100);
+	System.out.println(test);
+	test.add(4);
+	System.out.println(test);
+	test.add(6);
+	System.out.println(test);
+	
+	System.out.println(test.getHeight());
+
+	System.out.println(test.contains(5));
+	System.out.println(test.contains(15));
+	System.out.println(test.contains(3));
+	System.out.println(test.contains(10));
+	System.out.println(test.contains(4));
+	System.out.println(test.contains(6));
+	System.out.println(test.contains(0));
+
+	//System.out.println(test);
+	//test.remove(15);
+	//System.out.println(test);
+	//test.remove(4);
+	//System.out.println(test);
+	test.remove(10);
+	System.out.println(test);
     }
 }
