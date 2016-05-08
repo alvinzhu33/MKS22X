@@ -71,7 +71,19 @@ public class MyHeap<T extends Comparable<T>>{
         }
     }
     public T delete(){
-        return data[0];
+        T ans = data[0];
+        int counter = 1;
+        int k=1;
+        while(2*k+1<=size){
+            pushDown(k);
+            if(data[k*2+1].compareTo(data[k*2])>0){
+                k = k*2+1;
+            }else{
+                k = k*2;
+            }
+        }
+        data[k]=null;
+        return ans;
     }
     public void add(T x){
         if(size==0){
@@ -123,10 +135,13 @@ public class MyHeap<T extends Comparable<T>>{
         a.add(6);
         a.add(7);
         System.out.println(a);
+        a.delete();
+        System.out.println(a);
         System.out.println();
 
         Integer[] intA = {1,2,5,7,4,8,0};
         MyHeap<Integer> b = new MyHeap<>(intA);
+        System.out.println(b);
         System.out.println(b);
     }
 }
