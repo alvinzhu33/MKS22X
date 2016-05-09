@@ -35,31 +35,46 @@ public class MyHeap<T extends Comparable<T>>{
     private void pushDown(int k){
         T store = data[k];
         if(isMax){
-            if(k*2+1<=size && data[k*2+1].compareTo(data[k*2])>0){
-                data[k]=data[2*k+1];
-                data[2*k+1]=store;
-            }else{
-                data[k]=data[2*k];
-                data[2*k]=store;
-            }
+	    while(k*2+1<=size){
+		if(data[k*2+1].compareTo(data[k*2])>0){
+		    data[k]=data[2*k+1];
+		    data[2*k+1]=store;
+		    k = 2*k+1;
+		}else{
+		    data[k]=data[2*k];
+		    data[2*k]=store;
+		    k = 2*k;
+		}
+	    }
         }else{
-            if(k*2+1<=size && data[k*2+1].compareTo(data[k*2])>0){
-                data[k]=data[2*k];
-                data[2*k]=store;
-            }else{
-                data[k]=data[2*k+1];
-                data[2*k+1]=store;
-            }
+	    while(k*2+1<=size){
+		if(data[k*2+1].compareTo(data[k*2])>0){
+		    data[k]=data[2*k];
+		    data[2*k]=store;
+		    k = 2*k;
+		}else{
+		    data[k]=data[2*k+1];
+		    data[2*k+1]=store;
+		    k = 2*k+1;
+		}
+	    }
         }
     }
     private void pushUp(int k){
-        T store = data[k];
+        /*T store = data[k];
         data[k] = data[k/2];
-        data[k/2] = store;
-        //System.out.println(this);
+        data[k/2] = store;*/
+	T store;
+	
+	while(k>1){
+	    store = data[k];
+	    data[k] = data[k/2];
+	    data[k/2] = store;
+	    k = k/2;
+	}
     }
     private void heapify(){
-        for(int i=size; i>1; i--){
+        /*for(int i=size; i>1; i--){
             int changer = i;
             while(isMax && changer>1 && data[changer/2].compareTo(data[changer])<0){
                 pushUp(changer);
@@ -68,7 +83,10 @@ public class MyHeap<T extends Comparable<T>>{
             if(!isMax && data[i/2].compareTo(data[i])>0){
                 pushDown(i/2);
             }
-        }
+	    }*/
+	for(int i=size/2; i>0; i--){
+	    pushDown(i);
+	}
     }
     public T delete(){
         T ans = data[0];
@@ -96,11 +114,12 @@ public class MyHeap<T extends Comparable<T>>{
             data[size+1]=x;
             size++;
 
-            int index = size;
+            /*int index = size;
             while(index>1 && data[index].compareTo(data[index/2])>0){
                 pushUp(index);
                 index= index/2;
-            }
+		}*/
+	    pushUp(size);
         }
     }
     private void doubleSize(){
