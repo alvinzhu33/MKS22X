@@ -35,81 +35,61 @@ public class MyHeap<T extends Comparable<T>>{
     private void pushDown(int k){
         T store = data[k];
         if(isMax){
-	    while(k*2+1<=size){
-		if(data[k*2+1].compareTo(data[k*2])>0){
-		    data[k]=data[2*k+1];
-		    data[2*k+1]=store;
-		    k = 2*k+1;
-		}else{
-		    data[k]=data[2*k];
-		    data[2*k]=store;
-		    k = 2*k;
-		}
-	    }
+            while(k*2+1<=size){
+                if(data[k*2+1].compareTo(data[k*2])>0){
+                    data[k]=data[2*k+1];
+                    data[2*k+1]=store;
+                    k = 2*k+1;
+                }else{
+                    data[k]=data[2*k];
+                    data[2*k]=store;
+                    k = 2*k;
+                }
+            }
         }else{
-	    while(k*2+1<=size){
-		if(data[k*2+1].compareTo(data[k*2])>0){
-		    data[k]=data[2*k];
-		    data[2*k]=store;
-		    k = 2*k;
-		}else{
-		    data[k]=data[2*k+1];
-		    data[2*k+1]=store;
-		    k = 2*k+1;
-		}
-	    }
+            while(k*2+1<=size){
+                if(data[k*2+1].compareTo(data[k*2])>0){
+                    data[k]=data[2*k];
+                    data[2*k]=store;
+                    k = 2*k;
+                }else{
+                    data[k]=data[2*k+1];
+                    data[2*k+1]=store;
+                    k = 2*k+1;
+                }
+            }
         }
     }
     private void pushUp(int k){
-        /*T store = data[k];
-        data[k] = data[k/2];
-        data[k/2] = store;*/
-	T store;
-	
-	if(isMax){
-	    while(k>1 && data[k/2].compareTo(data[k])<0){
-		store = data[k];
-		data[k] = data[k/2];
-		data[k/2] = store;
-		k = k/2;
-	    }
-	}else{
-	    while(k>1 && data[k/2].compareTo(data[k])>0){
-		store = data[k];
-		data[k] = data[k/2];
-		data[k/2] = store;
-		k = k/2;
-	    }
-	}
+        T store;
+
+        if(isMax){
+            while(k>1 && data[k/2].compareTo(data[k])<0){
+                store = data[k];
+                data[k] = data[k/2];
+                data[k/2] = store;
+                k = k/2;
+            }
+        }else{
+            while(k>1 && data[k/2].compareTo(data[k])>0){
+                store = data[k];
+                data[k] = data[k/2];
+                data[k/2] = store;
+                k = k/2;
+            }
+        }
     }
     private void heapify(){
-        /*for(int i=size; i>1; i--){
-            int changer = i;
-            while(isMax && changer>1 && data[changer/2].compareTo(data[changer])<0){
-                pushUp(changer);
-                changer = changer/2;
-            }
-            if(!isMax && data[i/2].compareTo(data[i])>0){
-                pushDown(i/2);
-            }
-	    }*/
-	for(int i=size/2; i>0; i--){
-	    pushDown(i);
-	}
+        for(int i=size/2; i>0; i--){
+            pushDown(i);
+        }
     }
     public T delete(){
         T ans = data[0];
         int counter = 1;
         int k=1;
-        while(2*k+1<=size){
-            pushDown(k);
-            if(data[k*2+1].compareTo(data[k*2])>0){
-                k = k*2+1;
-            }else{
-                k = k*2;
-            }
-        }
-        data[k]=null;
+        data[1]=null;
+        pushDown(1);
         return ans;
     }
     public void add(T x){
@@ -123,7 +103,7 @@ public class MyHeap<T extends Comparable<T>>{
             data[size+1]=x;
             size++;
 
-	    pushUp(size);
+            pushUp(size);
         }
     }
     private void doubleSize(){
@@ -150,7 +130,7 @@ public class MyHeap<T extends Comparable<T>>{
 
     public static void main(String[]args){
         MyHeap<Integer> a = new MyHeap<>();
-        a.add(1);
+        /*a.add(1);
         a.add(2);
         a.add(3);
         a.add(4);
@@ -160,11 +140,12 @@ public class MyHeap<T extends Comparable<T>>{
         System.out.println(a);
         a.delete();
         System.out.println(a);
-        System.out.println();
+        System.out.println();*/
 
         Integer[] intA = {1,2,5,7,4,8,0};
         MyHeap<Integer> b = new MyHeap<>(intA);
-        System.out.println(b);
-        System.out.println(b);
+        /*System.out.println(b);
+        b.delete();
+        System.out.println(b);*/
     }
 }
