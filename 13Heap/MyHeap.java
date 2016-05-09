@@ -66,11 +66,20 @@ public class MyHeap<T extends Comparable<T>>{
         data[k/2] = store;*/
 	T store;
 	
-	while(k>1){
-	    store = data[k];
-	    data[k] = data[k/2];
-	    data[k/2] = store;
-	    k = k/2;
+	if(isMax){
+	    while(k>1 && data[k/2].compareTo(data[k])<0){
+		store = data[k];
+		data[k] = data[k/2];
+		data[k/2] = store;
+		k = k/2;
+	    }
+	}else{
+	    while(k>1 && data[k/2].compareTo(data[k])>0){
+		store = data[k];
+		data[k] = data[k/2];
+		data[k/2] = store;
+		k = k/2;
+	    }
 	}
     }
     private void heapify(){
@@ -114,11 +123,6 @@ public class MyHeap<T extends Comparable<T>>{
             data[size+1]=x;
             size++;
 
-            /*int index = size;
-            while(index>1 && data[index].compareTo(data[index/2])>0){
-                pushUp(index);
-                index= index/2;
-		}*/
 	    pushUp(size);
         }
     }
