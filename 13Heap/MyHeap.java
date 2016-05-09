@@ -46,6 +46,11 @@ public class MyHeap<T extends Comparable<T>>{
                     k = 2*k;
                 }
             }
+            if(k*2<=size){
+                data[k]=data[2*k];
+                data[2*k]=store;
+                k = 2*k;
+            }
         }else{
             while(k*2+1<=size){
                 if(data[k*2+1].compareTo(data[k*2])>0){
@@ -57,6 +62,11 @@ public class MyHeap<T extends Comparable<T>>{
                     data[2*k+1]=store;
                     k = 2*k+1;
                 }
+            }
+            if(k*2<=size){
+                data[k]=data[2*k];
+                data[2*k]=store;
+                k=2*k;
             }
         }
     }
@@ -90,6 +100,7 @@ public class MyHeap<T extends Comparable<T>>{
         int k=1;
         data[1]=null;
         pushDown(1);
+        size--;
         return ans;
     }
     public void add(T x){
@@ -108,7 +119,7 @@ public class MyHeap<T extends Comparable<T>>{
     }
     private void doubleSize(){
         T[] doubled = (T[]) new Comparable[(data.length-1)*2+1];
-        for(int i=1; i<size; i++){
+        for(int i=1; i<=size; i++){
             doubled[i] = data[i];
         }
         data = doubled;
@@ -117,9 +128,15 @@ public class MyHeap<T extends Comparable<T>>{
         String ans = "";
         int row=0;
         int i=1;
-        while(i<=size){
-            while(i-Math.pow(2,row)<Math.pow(2,row) && i<=size){
-                ans+=data[i]+" ";
+        int nums = size;
+        while(i<=nums){
+            while(i-Math.pow(2,row)<Math.pow(2,row) && i<=nums){
+                if(data[i]==null){
+                    ans+="_ ";
+                    nums++;
+                }else{
+                    ans+=data[i]+" ";
+                }
                 i++;
             }
             ans+="\n";
@@ -131,21 +148,67 @@ public class MyHeap<T extends Comparable<T>>{
     public static void main(String[]args){
         MyHeap<Integer> a = new MyHeap<>();
         /*a.add(1);
-        a.add(2);
-        a.add(3);
         a.add(4);
+        a.add(3);
+        a.add(9);
         a.add(5);
         a.add(6);
         a.add(7);
+        a.add(8);
+        a.add(1);
+        a.add(2);
+        a.add(7);
+        a.add(5);
+        a.add(2);
+        a.add(3);
+        a.add(2);
         System.out.println(a);
         a.delete();
         System.out.println(a);
         System.out.println();*/
 
         Integer[] intA = {1,2,5,7,4,8,0};
-        MyHeap<Integer> b = new MyHeap<>(intA);
-        /*System.out.println(b);
+        /*MyHeap<Integer> b = new MyHeap<>(intA);
+        System.out.println(b);
+        b.add(10);
+        b.add(20);
+        System.out.println(b);
+        b.delete();
+        System.out.println(b);
         b.delete();
         System.out.println(b);*/
+
+        MyHeap<Integer> c = new MyHeap<>(false);
+        /*c.add(7);
+        c.add(6);
+        c.add(5);
+        c.add(4);
+        c.add(3);
+        c.add(2);
+        c.add(1);
+        c.add(17);
+        c.add(16);
+        c.add(15);
+        c.add(14);
+        c.add(13);
+        c.add(12);
+        c.add(11);
+        System.out.println(c);
+        c.delete();
+        System.out.println(c);*/
+
+        Integer[] intB = {8,7,6,5,4,3,2};
+        MyHeap<Integer> d = new MyHeap<>(intB, false);
+        /*d.add(17);
+        d.add(16);
+        d.add(15);
+        d.add(14);
+        d.add(13);
+        d.add(12);
+        d.add(11);
+        d.add(10);
+        System.out.println(d);
+        d.delete();
+        System.out.println(d);*/
     }
 }
