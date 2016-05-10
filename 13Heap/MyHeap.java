@@ -95,6 +95,9 @@ public class MyHeap<T extends Comparable<T>>{
         }
     }
     public T delete(){
+        if(size==0){
+            throw new IllegalArgumentException();
+        }
         T ans = data[0];
         int counter = 1;
         int k=1;
@@ -102,6 +105,12 @@ public class MyHeap<T extends Comparable<T>>{
         pushDown(1);
         size--;
         return ans;
+    }
+    public T peek(){
+        if(size==0){
+            throw new IllegalArgumentException();
+        }
+        return data[1];
     }
     public void add(T x){
         if(size==0){
