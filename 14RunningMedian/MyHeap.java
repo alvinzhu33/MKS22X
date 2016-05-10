@@ -126,6 +126,9 @@ public class MyHeap<T extends Comparable<T>>{
             pushUp(size);
         }
     }
+    public int size(){
+	return size;
+    }
     private void doubleSize(){
         T[] doubled = (T[]) new Comparable[(data.length-1)*2+1];
         for(int i=1; i<=size; i++){
