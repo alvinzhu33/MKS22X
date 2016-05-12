@@ -98,7 +98,7 @@ public class MyHeap<T extends Comparable<T>>{
         if(size==0){
             throw new IllegalArgumentException();
         }
-        T ans = data[0];
+        T ans = data[1];
         int counter = 1;
         int k=1;
         data[1]=null;
