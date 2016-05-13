@@ -96,7 +96,7 @@ public class MyHeap<T extends Comparable<T>>{
     }
     public T delete(){
         if(size==0){
-            throw new IllegalArgumentException();
+            throw new NoSuchElementException();
         }
         T ans = data[1];
         int counter = 1;
@@ -108,7 +108,7 @@ public class MyHeap<T extends Comparable<T>>{
     }
     public T peek(){
         if(size==0){
-            throw new IllegalArgumentException();
+            throw new NoSuchElementException();
         }
         return data[1];
     }
@@ -134,7 +134,7 @@ public class MyHeap<T extends Comparable<T>>{
         data = doubled;
     }
     public String toString(){
-        String ans = "";
+        /*String ans = "";
         int row=0;
         int i=1;
         int nums = size;
@@ -151,12 +151,25 @@ public class MyHeap<T extends Comparable<T>>{
             ans+="\n";
             row++;
         }
+        return ans;*/
+        String ans = "";
+        int nums = size;
+        int i=1;
+        while(i<=nums){
+            if(data[i]==null){
+                ans += "_ ";
+                nums++;
+            }else{
+                ans+=data[i]+" ";
+            }
+            i++;
+        }
         return ans;
     }
 
     public static void main(String[]args){
         MyHeap<Integer> a = new MyHeap<>();
-        /*a.add(1);
+        a.add(1);
         a.add(4);
         a.add(3);
         a.add(9);
@@ -174,7 +187,7 @@ public class MyHeap<T extends Comparable<T>>{
         System.out.println(a);
         a.delete();
         System.out.println(a);
-        System.out.println();*/
+        System.out.println();
 
         Integer[] intA = {1,2,5,7,4,8,0};
         /*MyHeap<Integer> b = new MyHeap<>(intA);

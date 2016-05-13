@@ -96,7 +96,7 @@ public class MyHeap<T extends Comparable<T>>{
     }
     public T delete(){
         if(size==0){
-            throw new IllegalArgumentException();
+            throw new NoSuchElementException();
         }
         T ans = data[1];
         int counter = 1;
@@ -108,7 +108,7 @@ public class MyHeap<T extends Comparable<T>>{
     }
     public T peek(){
         if(size==0){
-            throw new IllegalArgumentException();
+            throw new NoSuchElementException();
         }
         return data[1];
     }
