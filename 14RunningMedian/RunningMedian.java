@@ -60,6 +60,7 @@ public class RunningMedian{
         //System.out.println(more);
         //System.out.println(less);
     }
+    
     public static void main(String[]args){
         RunningMedian r = new RunningMedian();
 
@@ -71,6 +72,9 @@ public class RunningMedian{
         r.add(-1);
         r.add(-1);
         r.add(-1);
+        r.add(-1);
+        r.add(3);
+        r.add(4);
         System.out.println(r.getMedian());
     }
 }
